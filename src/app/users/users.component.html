@@ -1,14 +1,7 @@
-<html>
-<head>
-  <title></title>
-</head>
-<body>
 <div class="container">
   <div class="row">
     <div class="mx-auto col-md-6 col-sm-6">
-      <app-table [tableConfig]="tableConfig" [data]="data" [filtered]="filtered.slice(1, filtered.length)"></app-table>
+      <app-table [tableConfig]="tableConfig" [data]="data.slice(1, data.length)"></app-table>
     </div>
   </div>
 </div>
-</body>
-</html>

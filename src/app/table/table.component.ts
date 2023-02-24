@@ -9,12 +9,13 @@ import {editButtonConfig, deleteButtonConfig, viewResButtonConfig} from "../butt
 export class TableComponent implements OnInit{
   @Input() tableConfig!: MyTableConfig;
   @Input() data!: any[];
-  @Input() filtered!:any[];
+  filtered!: any[];
   editButtonConfig=editButtonConfig;
   deleteButtonConfig=deleteButtonConfig;
   viewResButtonConfig=viewResButtonConfig;
 
   ngOnInit(): void {
+    this.filtered=this.data;
   }
 
   applyFilter(searchFor: string, searchValue: string) {
@@ -22,13 +23,11 @@ export class TableComponent implements OnInit{
   }
 
   action(whichTable:string, data:any, action:string){
-    if(whichTable==='users'){
-      if(action==='delete'){
-        let index = this.filtered.indexOf(data, 0);
-        console.log(index);
-        this.filtered.splice(index, 1);
-        console.log(this.filtered);
-      }
+    if(action==='delete'){
+      let index = this.filtered.indexOf(data, 0);
+      console.log(index);
+      this.filtered.splice(index, 1);
+      console.log(this.filtered);
     }
   }
 
