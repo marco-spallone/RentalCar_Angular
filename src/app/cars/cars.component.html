@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://kit.fontawesome.com/6b1574191b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-md-6 col-sm-6">
+      <table class="mt-5 table table-striped table-bordered">
+        <thead>
+        <th *ngFor="let h of tableConfig.headers">{{h.label}}</th>
+        <th></th><th></th><th></th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of data">
+          <td *ngFor="let n of tableConfig.headers">{{c[n.key]}}</td>
+          <td><app-button [buttonConfig]="editButtonConfig"></app-button></td>
+          <td><app-button [buttonConfig]="deleteButtonConfig"></app-button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

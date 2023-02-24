@@ -1,0 +1,703 @@
+import {Car} from "./car";
+
+export const CARS: Car[] = [{
+  "id": 1,
+  "marca": "BMW",
+  "modello": "5 Series",
+  "anno": 2002,
+  "prezzo": "€36,47",
+  "targa": "SCFBB04B08G730249"
+}, {
+  "id": 2,
+  "marca": "GMC",
+  "modello": "2500 Club Coupe",
+  "anno": 1993,
+  "prezzo": "€31,52",
+  "targa": "1G4GH5G36CF465285"
+}, {
+  "id": 3,
+  "marca": "Land Rover",
+  "modello": "Discovery",
+  "anno": 1996,
+  "prezzo": "€26,05",
+  "targa": "JH4DC54883C907022"
+}, {
+  "id": 4,
+  "marca": "Suzuki",
+  "modello": "Grand Vitara",
+  "anno": 2008,
+  "prezzo": "€32,44",
+  "targa": "JN1AZ4EH8FM690391"
+}, {
+  "id": 5,
+  "marca": "Dodge",
+  "modello": "Stratus",
+  "anno": 2001,
+  "prezzo": "€29,92",
+  "targa": "1G6DE8EY1B0961504"
+}, {
+  "id": 6,
+  "marca": "Toyota",
+  "modello": "Tundra",
+  "anno": 2005,
+  "prezzo": "€15,82",
+  "targa": "3D4PG4FB6BT355094"
+}, {
+  "id": 7,
+  "marca": "Chevrolet",
+  "modello": "Camaro",
+  "anno": 1976,
+  "prezzo": "€27,04",
+  "targa": "5J6TF1H33CL463327"
+}, {
+  "id": 8,
+  "marca": "Hillman",
+  "modello": "Minx Magnificent",
+  "anno": 1950,
+  "prezzo": "€25,50",
+  "targa": "1G6DL8ED0B0726143"
+}, {
+  "id": 9,
+  "marca": "Mitsubishi",
+  "modello": "Pajero",
+  "anno": 1985,
+  "prezzo": "€32,22",
+  "targa": "JA32U2FU1EU342204"
+}, {
+  "id": 10,
+  "marca": "Plymouth",
+  "modello": "Neon",
+  "anno": 1997,
+  "prezzo": "€18,26",
+  "targa": "4A4AP3AU2DE957654"
+}, {
+  "id": 11,
+  "marca": "Honda",
+  "modello": "Civic",
+  "anno": 1996,
+  "prezzo": "€14,93",
+  "targa": "SCBZK22E52C925237"
+}, {
+  "id": 12,
+  "marca": "Mercury",
+  "modello": "Marquis",
+  "anno": 1985,
+  "prezzo": "€25,40",
+  "targa": "WAUKF78E47A047713"
+}, {
+  "id": 13,
+  "marca": "GMC",
+  "modello": "Rally Wagon G2500",
+  "anno": 1995,
+  "prezzo": "€20,33",
+  "targa": "1D7RB1CP7BS205506"
+}, {
+  "id": 14,
+  "marca": "Chevrolet",
+  "modello": "Express",
+  "anno": 2008,
+  "prezzo": "€32,58",
+  "targa": "WAUSF98K29A102759"
+}, {
+  "id": 15,
+  "marca": "Ford",
+  "modello": "F-Series",
+  "anno": 1986,
+  "prezzo": "€27,64",
+  "targa": "5J6TF1H57DL362620"
+}, {
+  "id": 16,
+  "marca": "Chevrolet",
+  "modello": "Silverado 3500",
+  "anno": 2005,
+  "prezzo": "€13,47",
+  "targa": "1GTN1TEXXBZ435021"
+}, {
+  "id": 17,
+  "marca": "Pontiac",
+  "modello": "Fiero",
+  "anno": 1985,
+  "prezzo": "€20,64",
+  "targa": "KNADH5A38B6532903"
+}, {
+  "id": 18,
+  "marca": "BMW",
+  "modello": "M5",
+  "anno": 2006,
+  "prezzo": "€28,02",
+  "targa": "1FTEW1CM4CF566802"
+}, {
+  "id": 19,
+  "marca": "Lincoln",
+  "modello": "Navigator",
+  "anno": 1998,
+  "prezzo": "€7,59",
+  "targa": "2C3CDYCJ3CH491723"
+}, {
+  "id": 20,
+  "marca": "Pontiac",
+  "modello": "Trans Sport",
+  "anno": 1995,
+  "prezzo": "€17,30",
+  "targa": "3D73Y3CL6BG538106"
+}, {
+  "id": 21,
+  "marca": "Shelby",
+  "modello": "GT350",
+  "anno": 1969,
+  "prezzo": "€29,19",
+  "targa": "SCBGU3ZA7FC885114"
+}, {
+  "id": 22,
+  "marca": "Volkswagen",
+  "modello": "Eurovan",
+  "anno": 1999,
+  "prezzo": "€11,04",
+  "targa": "JTJBJRBZ7F2135945"
+}, {
+  "id": 23,
+  "marca": "Lincoln",
+  "modello": "Continental Mark VII",
+  "anno": 1990,
+  "prezzo": "€38,77",
+  "targa": "1FTSW2A53AE326308"
+}, {
+  "id": 24,
+  "marca": "Mercedes-Benz",
+  "modello": "R-Class",
+  "anno": 2010,
+  "prezzo": "€33,15",
+  "targa": "1GD02ZCG5EF710485"
+}, {
+  "id": 25,
+  "marca": "Ford",
+  "modello": "Ranger",
+  "anno": 2002,
+  "prezzo": "€11,03",
+  "targa": "3FAHP0JA3AR153629"
+}, {
+  "id": 26,
+  "marca": "Audi",
+  "modello": "RS 4",
+  "anno": 2008,
+  "prezzo": "€15,28",
+  "targa": "WVWAB7AJ9CW173242"
+}, {
+  "id": 27,
+  "marca": "Volvo",
+  "modello": "V50",
+  "anno": 2011,
+  "prezzo": "€17,08",
+  "targa": "JTDKTUD30DD564256"
+}, {
+  "id": 28,
+  "marca": "Ford",
+  "modello": "Mustang",
+  "anno": 1969,
+  "prezzo": "€27,46",
+  "targa": "SCFFDABE3BG766619"
+}, {
+  "id": 29,
+  "marca": "Chevrolet",
+  "modello": "SSR",
+  "anno": 2005,
+  "prezzo": "€24,48",
+  "targa": "2FMGK5B82EB416607"
+}, {
+  "id": 30,
+  "marca": "Cadillac",
+  "modello": "Eldorado",
+  "anno": 2001,
+  "prezzo": "€7,53",
+  "targa": "WBAVC73537A298042"
+}, {
+  "id": 31,
+  "marca": "Mercury",
+  "modello": "Cougar",
+  "anno": 1969,
+  "prezzo": "€7,32",
+  "targa": "WAUWMAFC4EN839341"
+}, {
+  "id": 32,
+  "marca": "Volkswagen",
+  "modello": "Passat",
+  "anno": 1986,
+  "prezzo": "€14,12",
+  "targa": "3VWKX7AJ3AM259761"
+}, {
+  "id": 33,
+  "marca": "Toyota",
+  "modello": "Venza",
+  "anno": 2011,
+  "prezzo": "€32,45",
+  "targa": "5NPDH4AE4BH873428"
+}, {
+  "id": 34,
+  "marca": "Lincoln",
+  "modello": "Continental Mark VII",
+  "anno": 1986,
+  "prezzo": "€32,73",
+  "targa": "WAUVC68E15A626722"
+}, {
+  "id": 35,
+  "marca": "Mercedes-Benz",
+  "modello": "R-Class",
+  "anno": 2012,
+  "prezzo": "€22,31",
+  "targa": "19XFB4F23DE392005"
+}, {
+  "id": 36,
+  "marca": "Lamborghini",
+  "modello": "Diablo",
+  "anno": 1996,
+  "prezzo": "€23,24",
+  "targa": "1D7RE3GK0BS242754"
+}, {
+  "id": 37,
+  "marca": "Ford",
+  "modello": "LTD Crown Victoria",
+  "anno": 1990,
+  "prezzo": "€20,62",
+  "targa": "1GD220CG2CZ744951"
+}, {
+  "id": 38,
+  "marca": "Saab",
+  "modello": "900",
+  "anno": 1998,
+  "prezzo": "€11,03",
+  "targa": "JTDZN3EU5D3298880"
+}, {
+  "id": 39,
+  "marca": "Volvo",
+  "modello": "S60",
+  "anno": 2008,
+  "prezzo": "€31,81",
+  "targa": "1N4AL2AP1BC355673"
+}, {
+  "id": 40,
+  "marca": "Ford",
+  "modello": "F350",
+  "anno": 2011,
+  "prezzo": "€9,33",
+  "targa": "YV426MDB7F2337494"
+}, {
+  "id": 41,
+  "marca": "Land Rover",
+  "modello": "Discovery",
+  "anno": 2002,
+  "prezzo": "€27,14",
+  "targa": "WA1VGAFP1FA054562"
+}, {
+  "id": 42,
+  "marca": "Mazda",
+  "modello": "Miata MX-5",
+  "anno": 1996,
+  "prezzo": "€32,07",
+  "targa": "WUAAU34269N534502"
+}, {
+  "id": 43,
+  "marca": "Dodge",
+  "modello": "Ram Van 1500",
+  "anno": 1997,
+  "prezzo": "€30,54",
+  "targa": "KMHFC4DF7BA723442"
+}, {
+  "id": 44,
+  "marca": "Ford",
+  "modello": "Escort",
+  "anno": 2004,
+  "prezzo": "€22,73",
+  "targa": "3GYFNAE3XES691956"
+}, {
+  "id": 45,
+  "marca": "Volkswagen",
+  "modello": "Cabriolet",
+  "anno": 1996,
+  "prezzo": "€30,59",
+  "targa": "3N1AB6APXCL028430"
+}, {
+  "id": 46,
+  "marca": "Ford",
+  "modello": "E350",
+  "anno": 2009,
+  "prezzo": "€37,65",
+  "targa": "5UXFA53513L621101"
+}, {
+  "id": 47,
+  "marca": "Honda",
+  "modello": "Accord",
+  "anno": 1983,
+  "prezzo": "€31,20",
+  "targa": "4JGDA2EB6DA171772"
+}, {
+  "id": 48,
+  "marca": "Saturn",
+  "modello": "VUE",
+  "anno": 2007,
+  "prezzo": "€15,23",
+  "targa": "4T1BF3EK2BU011916"
+}, {
+  "id": 49,
+  "marca": "Porsche",
+  "modello": "928",
+  "anno": 1987,
+  "prezzo": "€11,13",
+  "targa": "5TDDK3DC2FS236690"
+}, {
+  "id": 50,
+  "marca": "Oldsmobile",
+  "modello": "88",
+  "anno": 1994,
+  "prezzo": "€8,68",
+  "targa": "JM1GJ1T6XE1021098"
+}, {
+  "id": 51,
+  "marca": "Ford",
+  "modello": "Taurus",
+  "anno": 1996,
+  "prezzo": "€12,72",
+  "targa": "YV4902DZ1B2991595"
+}, {
+  "id": 52,
+  "marca": "Mercedes-Benz",
+  "modello": "SL-Class",
+  "anno": 1994,
+  "prezzo": "€32,68",
+  "targa": "WAUGFAFR8AA838830"
+}, {
+  "id": 53,
+  "marca": "Volkswagen",
+  "modello": "Golf",
+  "anno": 2003,
+  "prezzo": "€38,06",
+  "targa": "WAUUL68E25A505225"
+}, {
+  "id": 54,
+  "marca": "Honda",
+  "modello": "Civic",
+  "anno": 1993,
+  "prezzo": "€37,08",
+  "targa": "19XFA1E34AE938057"
+}, {
+  "id": 55,
+  "marca": "Audi",
+  "modello": "Allroad",
+  "anno": 2001,
+  "prezzo": "€27,77",
+  "targa": "WP0CA2A80EK432657"
+}, {
+  "id": 56,
+  "marca": "BMW",
+  "modello": "3 Series",
+  "anno": 1997,
+  "prezzo": "€35,66",
+  "targa": "2C3CCAJG1DH890164"
+}, {
+  "id": 57,
+  "marca": "Isuzu",
+  "modello": "Hombre Space",
+  "anno": 1997,
+  "prezzo": "€24,98",
+  "targa": "JN1AY1AR8DM171208"
+}, {
+  "id": 58,
+  "marca": "Lexus",
+  "modello": "GS",
+  "anno": 2011,
+  "prezzo": "€13,63",
+  "targa": "WA1CYAFEXAD456025"
+}, {
+  "id": 59,
+  "marca": "Pontiac",
+  "modello": "Grand Prix",
+  "anno": 1984,
+  "prezzo": "€34,18",
+  "targa": "KNADH4A30A6067865"
+}, {
+  "id": 60,
+  "marca": "Dodge",
+  "modello": "Ram 3500",
+  "anno": 2003,
+  "prezzo": "€10,67",
+  "targa": "KMHEC4A47FA184597"
+}, {
+  "id": 61,
+  "marca": "Ford",
+  "modello": "Laser",
+  "anno": 1984,
+  "prezzo": "€28,24",
+  "targa": "JN8AZ2KR1BT212297"
+}, {
+  "id": 62,
+  "marca": "Mazda",
+  "modello": "Millenia",
+  "anno": 1997,
+  "prezzo": "€36,68",
+  "targa": "WBAYM9C54DD575488"
+}, {
+  "id": 63,
+  "marca": "Nissan",
+  "modello": "240SX",
+  "anno": 1993,
+  "prezzo": "€9,65",
+  "targa": "WAUVT68E45A238626"
+}, {
+  "id": 64,
+  "marca": "Nissan",
+  "modello": "Xterra",
+  "anno": 2001,
+  "prezzo": "€13,10",
+  "targa": "5NPEB4AC4CH132363"
+}, {
+  "id": 65,
+  "marca": "Jaguar",
+  "modello": "XJ Series",
+  "anno": 1996,
+  "prezzo": "€37,92",
+  "targa": "JN1CV6AP2BM696176"
+}, {
+  "id": 66,
+  "marca": "Citroën",
+  "modello": "2CV",
+  "anno": 1948,
+  "prezzo": "€33,85",
+  "targa": "3D7TT2CT7BG172326"
+}, {
+  "id": 67,
+  "marca": "Mitsubishi",
+  "modello": "Chariot",
+  "anno": 1985,
+  "prezzo": "€8,77",
+  "targa": "5N1AN0NU8CC100086"
+}, {
+  "id": 68,
+  "marca": "Mercury",
+  "modello": "Mariner",
+  "anno": 2006,
+  "prezzo": "€28,74",
+  "targa": "2G4WY55J911078716"
+}, {
+  "id": 69,
+  "marca": "BMW",
+  "modello": "5 Series",
+  "anno": 2007,
+  "prezzo": "€39,55",
+  "targa": "5FPYK1F41CB939569"
+}, {
+  "id": 70,
+  "marca": "Lamborghini",
+  "modello": "Diablo",
+  "anno": 1991,
+  "prezzo": "€33,67",
+  "targa": "WBALZ3C51CD771282"
+}, {
+  "id": 71,
+  "marca": "Porsche",
+  "modello": "911",
+  "anno": 1991,
+  "prezzo": "€13,90",
+  "targa": "WBAUL7C58BV803201"
+}, {
+  "id": 72,
+  "marca": "Hyundai",
+  "modello": "Santa Fe",
+  "anno": 2006,
+  "prezzo": "€16,23",
+  "targa": "YV1672MS8B2706096"
+}, {
+  "id": 73,
+  "marca": "Dodge",
+  "modello": "Avenger",
+  "anno": 1996,
+  "prezzo": "€18,05",
+  "targa": "SALFR2BG3EH494703"
+}, {
+  "id": 74,
+  "marca": "Infiniti",
+  "modello": "QX",
+  "anno": 1997,
+  "prezzo": "€28,02",
+  "targa": "WAUMFAFL6AA071719"
+}, {
+  "id": 75,
+  "marca": "Mazda",
+  "modello": "B-Series",
+  "anno": 1986,
+  "prezzo": "€34,62",
+  "targa": "3VW1K7AJ9CM916124"
+}, {
+  "id": 76,
+  "marca": "Dodge",
+  "modello": "Charger",
+  "anno": 2007,
+  "prezzo": "€17,51",
+  "targa": "2G4GS5EV6D9156853"
+}, {
+  "id": 77,
+  "marca": "Honda",
+  "modello": "Accord",
+  "anno": 1993,
+  "prezzo": "€27,93",
+  "targa": "WA1WMAFE4BD655601"
+}, {
+  "id": 78,
+  "marca": "Buick",
+  "modello": "Electra",
+  "anno": 1990,
+  "prezzo": "€19,14",
+  "targa": "JTJBC1BA0E2323954"
+}, {
+  "id": 79,
+  "marca": "Pontiac",
+  "modello": "Turbo Firefly",
+  "anno": 1990,
+  "prezzo": "€30,28",
+  "targa": "JTHBL5EF2D5045832"
+}, {
+  "id": 80,
+  "marca": "Cadillac",
+  "modello": "STS-V",
+  "anno": 2008,
+  "prezzo": "€15,81",
+  "targa": "1C3BC4EB4AN511785"
+}, {
+  "id": 81,
+  "marca": "GMC",
+  "modello": "Yukon XL 1500",
+  "anno": 2009,
+  "prezzo": "€28,60",
+  "targa": "JTDKN3DU8A0852333"
+}, {
+  "id": 82,
+  "marca": "Mercury",
+  "modello": "Mariner",
+  "anno": 2006,
+  "prezzo": "€14,86",
+  "targa": "JH4DC548X3S686741"
+}, {
+  "id": 83,
+  "marca": "Buick",
+  "modello": "Roadmaster",
+  "anno": 1993,
+  "prezzo": "€34,17",
+  "targa": "2HNYD18851H035826"
+}, {
+  "id": 84,
+  "marca": "Pontiac",
+  "modello": "Firefly",
+  "anno": 1992,
+  "prezzo": "€9,29",
+  "targa": "1GKS1AE07BR776293"
+}, {
+  "id": 85,
+  "marca": "Ford",
+  "modello": "Mustang",
+  "anno": 2008,
+  "prezzo": "€30,87",
+  "targa": "1YVHZ8BH3B5416490"
+}, {
+  "id": 86,
+  "marca": "Toyota",
+  "modello": "Tundra",
+  "anno": 2009,
+  "prezzo": "€13,93",
+  "targa": "5UMDU93598L451743"
+}, {
+  "id": 87,
+  "marca": "Ford",
+  "modello": "Escort",
+  "anno": 2004,
+  "prezzo": "€9,07",
+  "targa": "1C4AJWAG7FL659670"
+}, {
+  "id": 88,
+  "marca": "Oldsmobile",
+  "modello": "Achieva",
+  "anno": 1998,
+  "prezzo": "€21,52",
+  "targa": "1GYEK63N65R824561"
+}, {
+  "id": 89,
+  "marca": "Audi",
+  "modello": "A3",
+  "anno": 2010,
+  "prezzo": "€39,26",
+  "targa": "WAUSH78E88A564671"
+}, {
+  "id": 90,
+  "marca": "Dodge",
+  "modello": "Caravan",
+  "anno": 2009,
+  "prezzo": "€8,95",
+  "targa": "WDCYC3HF5DX959003"
+}, {
+  "id": 91,
+  "marca": "Pontiac",
+  "modello": "Sunbird",
+  "anno": 1989,
+  "prezzo": "€14,33",
+  "targa": "3VW517AT3EM709107"
+}, {
+  "id": 92,
+  "marca": "BMW",
+  "modello": "3 Series",
+  "anno": 1994,
+  "prezzo": "€22,04",
+  "targa": "WBACN53491L680844"
+}, {
+  "id": 93,
+  "marca": "Porsche",
+  "modello": "911",
+  "anno": 1987,
+  "prezzo": "€31,23",
+  "targa": "WAUHFAFLXDN884589"
+}, {
+  "id": 94,
+  "marca": "Infiniti",
+  "modello": "FX",
+  "anno": 2009,
+  "prezzo": "€30,25",
+  "targa": "1G6DM577880051766"
+}, {
+  "id": 95,
+  "marca": "Suzuki",
+  "modello": "Grand Vitara",
+  "anno": 2012,
+  "prezzo": "€23,12",
+  "targa": "WAUDL54F45N795310"
+}, {
+  "id": 96,
+  "marca": "Mercedes-Benz",
+  "modello": "G-Class",
+  "anno": 2011,
+  "prezzo": "€17,27",
+  "targa": "1FM5K7B87DG649716"
+}, {
+  "id": 97,
+  "marca": "Saturn",
+  "modello": "VUE",
+  "anno": 2008,
+  "prezzo": "€14,74",
+  "targa": "3VW8S7AT7FM126714"
+}, {
+  "id": 98,
+  "marca": "Chevrolet",
+  "modello": "TrailBlazer",
+  "anno": 2003,
+  "prezzo": "€27,69",
+  "targa": "3D73Y3HL1BG959014"
+}, {
+  "id": 99,
+  "marca": "Pontiac",
+  "modello": "Grand Prix",
+  "anno": 1992,
+  "prezzo": "€25,00",
+  "targa": "3N6CM0KN8FK276533"
+}, {
+  "id": 100,
+  "marca": "Maserati",
+  "modello": "228",
+  "anno": 1989,
+  "prezzo": "€20,75",
+  "targa": "WBAXG5C52DD165588"
+}]

@@ -7,15 +7,20 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-md-6 col-sm-6">
+      <select #searchFor name="searchFor" class="mt-2 form-select">
+        <option *ngFor="let option of tableConfig.search.columns">
+          {{option}}
+        </option>
+      </select>
+      <input #searchValue type="text" class="form-control" id="search" name="search" placeholder="Cerca..."
+             (keyup)="applyFilter(searchFor.value, searchValue.value)"/>
       <table class="mt-5 table table-striped table-bordered">
         <thead>
-          <th>Nome</th>
-          <th>Cognome</th>
-          <th></th>
-          <th></th>
+          <th *ngFor="let h of tableConfig.headers">{{h.label}}</th>
+        <th></th><th></th><th></th>
         </thead>
         <tbody>
-          <tr *ngFor="let u of users.slice(1, users.length)">
+          <tr *ngFor="let u of filtered.slice(1, users.length)">
             <td>{{u.name}}</td>
             <td>{{u.surname}}</td>
             <td><app-button [buttonConfig]="editButtonConfig"></app-button></td>

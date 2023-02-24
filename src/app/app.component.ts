@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {usersTableConfig} from "./config/table-config";
+import {USERS} from "./mock-users";
+import {CARS} from "./mock-cars";
 
 @Component({
   selector: 'app-root',
@@ -7,5 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RentalCar_Angular';
+
+  users:any = USERS;
+  cars:any = CARS;
 
 }
