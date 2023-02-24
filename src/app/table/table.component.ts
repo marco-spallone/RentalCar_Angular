@@ -21,6 +21,17 @@ export class TableComponent implements OnInit{
     this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
   }
 
+  action(whichTable:string, data:any, action:string){
+    if(whichTable==='users'){
+      if(action==='delete'){
+        let index = this.filtered.indexOf(data, 0);
+        console.log(index);
+        this.filtered.splice(index, 1);
+        console.log(this.filtered);
+      }
+    }
+  }
+
 }
 
 

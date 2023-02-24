@@ -11,11 +11,12 @@
   <th></th><th></th><th></th>
   </thead>
   <tbody>
-  <tr *ngFor="let f of filtered">
+  <tr *ngFor="let f of filtered, let rowId = index" [attr.id]="rowId">
     <td *ngFor="let n of tableConfig.headers">{{f[n.key]}}</td>
-    <td><app-button [buttonConfig]="editButtonConfig"></app-button></td>
-    <td *ngIf="tableConfig.whichTable==='users'"><app-button [buttonConfig]="viewResButtonConfig"></app-button></td>
-    <td><app-button [buttonConfig]="deleteButtonConfig"></app-button></td>
+    <td><app-button [buttonConfig]="editButtonConfig" (click)="action(tableConfig.whichTable, f, 'edit')"></app-button></td>
+    <td *ngIf="tableConfig.whichTable==='users'"><app-button [buttonConfig]="viewResButtonConfig" (click)="action(tableConfig.whichTable, f,
+    'viewRes')"></app-button></td>
+    <td><app-button [buttonConfig]="deleteButtonConfig" (click)="action(tableConfig.whichTable, f, 'delete')"></app-button></td>
   </tr>
   </tbody>
 </table>
