@@ -1,6 +1,7 @@
-import {MyHeaders, MySearch, MyTableConfig} from "../users/users.component";
+import {MyHeaders, MySearch, MyTableConfig} from "../table/table.component";
 
 export const usersTableConfig: MyTableConfig = {
+  whichTable:'users',
   headers: [
     new MyHeaders('Nome', 'name'),
     new MyHeaders('Cognome', 'surname'),
@@ -9,6 +10,7 @@ export const usersTableConfig: MyTableConfig = {
 }
 
 export const carsTableConfig: MyTableConfig ={
+  whichTable:'cars',
   headers: [
     new MyHeaders('Marca', 'marca'),
     new MyHeaders('Modello', 'modello'),

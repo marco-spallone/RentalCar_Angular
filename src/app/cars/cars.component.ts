@@ -3,7 +3,7 @@ import {Car} from "../car";
 import {CARS} from "../mock-cars";
 import {carsTableConfig} from "../config/table-config";
 import {editButtonConfig, deleteButtonConfig} from "../button/config/button-config";
-import {MyTableConfig} from "../users/users.component";
+import {MyTableConfig} from "../table/table.component";
 
 @Component({
   selector: 'app-cars',
@@ -11,14 +11,14 @@ import {MyTableConfig} from "../users/users.component";
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit{
-  cars: Car[] = CARS;
-  @Input() tableConfig: MyTableConfig = carsTableConfig;
-  @Input() data!: any[];
-  editButtonConfig=editButtonConfig;
-  deleteButtonConfig=deleteButtonConfig;
+  tableConfig!: MyTableConfig;
+  data!: any[];
+  filtered!:any[];
 
   ngOnInit() {
-    this.data=this.cars;
+    this.tableConfig=carsTableConfig;
+    this.data=CARS;
+    this.filtered=this.data;
   }
 
 }

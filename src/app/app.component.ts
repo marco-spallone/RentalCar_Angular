@@ -11,7 +11,4 @@ import {CARS} from "./mock-cars";
 export class AppComponent {
   title = 'RentalCar_Angular';
 
-  users:any = USERS;
-  cars:any = CARS;
-
 }

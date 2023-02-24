@@ -1,0 +1,21 @@
+<select #searchFor name="searchFor" class="mt-2 form-select">
+  <option *ngFor="let option of tableConfig.search.columns">
+    {{option}}
+  </option>
+</select>
+<input #searchValue type="text" class="form-control" id="search" name="search" placeholder="Cerca..."
+       (keyup)="applyFilter(searchFor.value, searchValue.value)"/>
+<table class="mt-5 table table-striped table-bordered">
+  <thead>
+  <th *ngFor="let h of tableConfig.headers">{{h.label}}</th>
+  <th></th><th></th><th></th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let f of filtered">
+    <td *ngFor="let n of tableConfig.headers">{{f[n.key]}}</td>
+    <td><app-button [buttonConfig]="editButtonConfig"></app-button></td>
+    <td *ngIf="tableConfig.whichTable==='users'"><app-button [buttonConfig]="viewResButtonConfig"></app-button></td>
+    <td><app-button [buttonConfig]="deleteButtonConfig"></app-button></td>
+  </tr>
+  </tbody>
+</table>

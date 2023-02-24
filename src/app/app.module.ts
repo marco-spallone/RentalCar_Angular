@@ -6,6 +6,7 @@ import { ButtonComponent } from './button/button.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CarsComponent } from './cars/cars.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
     UsersComponent,
     ButtonComponent,
     NavbarComponent,
-    CarsComponent
+    CarsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
