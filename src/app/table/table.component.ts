@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {editButtonConfig, deleteButtonConfig, viewResButtonConfig} from "../button/config/button-config";
+import {Router} from "@angular/router";
+import {UsersService} from "../users.service";
+import {CarsService} from "../cars.service";
 
 @Component({
   selector: 'app-table',
@@ -14,6 +17,8 @@ export class TableComponent implements OnInit{
   deleteButtonConfig=deleteButtonConfig;
   viewResButtonConfig=viewResButtonConfig;
 
+  constructor(public router: Router, private userService: UsersService, private carsService: CarsService) {
+  }
   ngOnInit(): void {
     this.filtered=this.data;
   }
@@ -21,14 +26,24 @@ export class TableComponent implements OnInit{
   applyFilter(searchFor: string, searchValue: string) {
     this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
   }
-
-  action(whichTable:string, data:any, action:string){
-    if(action==='delete'){
-      let index = this.filtered.indexOf(data, 0);
-      console.log(index);
-      this.filtered.splice(index, 1);
-      console.log(this.filtered);
+  edit(whichTable:string, data:any){
+    if(whichTable==='users'){
+      this.userService.setUserToEdit(data);
+      this.router.navigate(['editUser', data.id]);
+    } else if(whichTable==='cars') {
+      this.carsService.setCarToEdit(data);
+      this.router.navigate(['editCar', data.id]);
     }
+
+  }
+
+  viewRes(whichTable:string, data:any){
+
+  }
+
+  delete(whichTable:string, data:any){
+    let index = this.filtered.indexOf(data, 0);
+    this.filtered.splice(index, 1);
   }
 
 }

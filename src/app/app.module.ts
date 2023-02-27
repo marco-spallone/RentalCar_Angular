@@ -8,6 +8,9 @@ import { CarsComponent } from './cars/cars.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TableComponent } from './table/table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserFormComponent } from './userform/userForm.component';
+import {FormsModule} from "@angular/forms";
+import { CarFormComponent } from './car-form/car-form.component';
 
 
 
@@ -18,12 +21,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ButtonComponent,
     NavbarComponent,
     CarsComponent,
-    TableComponent
+    TableComponent,
+    UserFormComponent,
+    CarFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,10 +13,9 @@
   <tbody>
   <tr *ngFor="let f of filtered, let rowId = index" [attr.id]="rowId">
     <td *ngFor="let n of tableConfig.headers">{{f[n.key]}}</td>
-    <td><app-button [buttonConfig]="editButtonConfig" (click)="action(tableConfig.whichTable, f, 'edit')"></app-button></td>
-    <td *ngIf="tableConfig.whichTable==='users'"><app-button [buttonConfig]="viewResButtonConfig" (click)="action(tableConfig.whichTable, f,
-    'viewRes')"></app-button></td>
-    <td><app-button [buttonConfig]="deleteButtonConfig" (click)="action(tableConfig.whichTable, f, 'delete')"></app-button></td>
+    <td><app-button [buttonConfig]="editButtonConfig" (click)="edit(tableConfig.whichTable, f)"></app-button></td>
+    <td *ngIf="tableConfig.whichTable==='users'"><app-button [buttonConfig]="viewResButtonConfig" (click)="viewRes(tableConfig.whichTable, f)"></app-button></td>
+    <td><app-button [buttonConfig]="deleteButtonConfig" (click)="delete(tableConfig.whichTable, f)"></app-button></td>
   </tr>
   </tbody>
 </table>
