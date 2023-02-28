@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {usersTableConfig} from "../config/table-config";
 import {MyTableConfig} from "../table/table.component";
-import {USERS} from "../mock-users";
+import {UsersService} from "../services/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -10,13 +11,40 @@ import {USERS} from "../mock-users";
 })
 export class UsersComponent implements OnInit{
   tableConfig!: MyTableConfig;
-  data!: any[];
+  users!: any[];
   filtered: any[] = [];
+
+
+  constructor(private router: Router, private userService: UsersService) {
+  }
 
   ngOnInit(): void{
     this.tableConfig=usersTableConfig;
-    this.data=USERS;
-    this.filtered = this.data;
+    this.getUsers();
+    this.filtered = this.users;
+  }
+
+  getUsers(): void{
+    this.userService.getUsers().subscribe(users => this.users = users);
+  }
+
+  action(whichTable:string, users:any[], user:any, action:string){
+    if(whichTable==='users'){
+      switch (action){
+        case 'edit':
+          this.userService.getUserById(users, user.id);
+          this.router.navigate(['editUser', user.id]);
+          break;
+        case 'post':
+          this.userService.updateUser(this.users, user);
+          break;
+        case 'delete':
+          this.userService.deleteUser(this.filtered, user);
+          break;
+        default:
+          break;
+      }
+    }
   }
 
 

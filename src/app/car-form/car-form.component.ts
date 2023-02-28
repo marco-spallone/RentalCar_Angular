@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../user";
 import {ActivatedRoute} from "@angular/router";
-import {UsersService} from "../users.service";
-import {CarsService} from "../cars.service";
+import {CarsService} from "../services/cars.service";
 import {Car} from "../car";
 
 @Component({
@@ -12,7 +10,7 @@ import {Car} from "../car";
 })
 export class CarFormComponent implements OnInit{
   id!:number
-  data!:any;
+  car!:Car;
   cars!:Car[];
 
   constructor(private route: ActivatedRoute, private carsService: CarsService) {
@@ -22,21 +20,14 @@ export class CarFormComponent implements OnInit{
       this.id = Number.parseInt(params['id']);
     })
     this.getCars();
-    this.data=this.carsService.carToEdit;
+    this.car=this.carsService.car;
   }
 
   getCars(): void{
     this.carsService.getCars().subscribe(cars => this.cars = cars);
   }
 
-  editCar(){
-    this.data.marca=(<HTMLInputElement>document.getElementById('marca')).value;
-    this.data.modello=(<HTMLInputElement>document.getElementById('modello')).value;
-    this.data.anno=(<HTMLInputElement>document.getElementById('anno')).value;
-    this.data.prezzo=(<HTMLInputElement>document.getElementById('prezzo')).value;
-    this.data.targa=(<HTMLInputElement>document.getElementById('targa')).value;
-    let indexToUpdate = this.cars.findIndex(item => item.id === this.data.id);
-    this.cars[indexToUpdate] = this.data;
-    this.cars = Object.assign([], this.cars);
+  post(car: any) {
+    this.carsService.updateCar(this.cars, car);
   }
 }
