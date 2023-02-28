@@ -8,7 +8,6 @@ import {Observable, of} from "rxjs";
 })
 export class UsersService {
 
-  user!:User;
 
   constructor() { }
 
@@ -17,21 +16,19 @@ export class UsersService {
     return users;
   }
 
-  getUserById(users:any[], id:number){
-    this.user=users.filter(item => item.id === id)[0];
+  getUserById(id:number){
+    return of(USERS.filter(item => item.id === id)[0]);
   }
 
-  updateUser(users:any[], user:any): any[]{
-    let indexToUpdate = users.findIndex(item => item.id === user.id);
-    users[indexToUpdate] = user;
-    users = Object.assign([], users);
-    console.log(users);
-    return users;
+  updateUser(user:any){
+    let indexToUpdate = USERS.findIndex(item => item.id === user.id);
+    USERS[indexToUpdate] = user;
+    Object.assign([], USERS);
+    console.log(USERS);
   }
 
-  deleteUser(users:any[], user:any): any[]{
-    let index = users.indexOf(user, 0);
-    users.splice(index, 1);
-    return users;
+  deleteUser(user:any){
+    let index = USERS.indexOf(user, 0);
+    USERS.splice(index, 1);
   }
 }

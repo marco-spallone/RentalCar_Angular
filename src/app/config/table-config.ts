@@ -6,7 +6,8 @@ export const usersTableConfig: MyTableConfig = {
     new MyHeaders('Nome', 'name'),
     new MyHeaders('Cognome', 'surname'),
   ],
-  search:new MySearch(['name', 'surname'])
+  search:new MySearch(['name', 'surname']),
+  addHeaders:Array(3).fill(0).map((x,i)=>i)
 }
 
 export const carsTableConfig: MyTableConfig ={
@@ -18,5 +19,6 @@ export const carsTableConfig: MyTableConfig ={
     new MyHeaders('Prezzo', 'prezzo'),
     new MyHeaders('Targa', 'targa'),
   ],
-  search:new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa'])
+  search:new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
+  addHeaders:Array(2).fill(0).map((x,i)=>i)
 }

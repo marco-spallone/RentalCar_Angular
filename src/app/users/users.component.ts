@@ -12,7 +12,6 @@ import {Router} from "@angular/router";
 export class UsersComponent implements OnInit{
   tableConfig!: MyTableConfig;
   users!: any[];
-  filtered: any[] = [];
 
 
   constructor(private router: Router, private userService: UsersService) {
@@ -21,31 +20,26 @@ export class UsersComponent implements OnInit{
   ngOnInit(): void{
     this.tableConfig=usersTableConfig;
     this.getUsers();
-    this.filtered = this.users;
   }
 
   getUsers(): void{
     this.userService.getUsers().subscribe(users => this.users = users);
   }
 
-  action(whichTable:string, users:any[], user:any, action:string){
-    if(whichTable==='users'){
-      switch (action){
-        case 'edit':
-          this.userService.getUserById(users, user.id);
-          this.router.navigate(['editUser', user.id]);
-          break;
-        case 'post':
-          this.userService.updateUser(this.users, user);
-          break;
-        case 'delete':
-          this.userService.deleteUser(this.filtered, user);
-          break;
-        default:
-          break;
-      }
+  action(users:any[], user:any, action:string) {
+    switch (action) {
+      case 'edit':
+        this.userService.getUserById(user.id);
+        this.router.navigate(['editUser', user.id]);
+        break;
+      case 'post':
+        this.userService.updateUser(user);
+        break;
+      case 'delete':
+        this.userService.deleteUser(user);
+        break;
+      default:
+        break;
     }
   }
-
-
 }

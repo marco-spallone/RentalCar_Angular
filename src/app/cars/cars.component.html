@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-md-6 col-sm-6">
-      <app-table [tableConfig]="tableConfig" [data]="cars" (newItemEvent)="action($event.whichTable, $event.data, $event.entity, $event.action)"></app-table>
+      <app-table [tableConfig]="tableConfig" [data]="cars" (newItemEvent)="action($event.data, $event.entity, $event.action)"></app-table>
     </div>
   </div>
 </div>

@@ -13,8 +13,6 @@ export class UserFormComponent implements OnInit {
   user!:User;
   users!:User[];
 
-  @Output() newItemEvent = new EventEmitter<any>();
-
   constructor(private route: ActivatedRoute, private userService: UsersService) {
   }
   ngOnInit(): void {
@@ -22,7 +20,7 @@ export class UserFormComponent implements OnInit {
       this.id = Number.parseInt(params['id']);
     })
     this.getUsers();
-    this.user=this.userService.user;
+    this.userService.getUserById(this.id).subscribe(user => this.user = user);
   }
 
   getUsers(): void{
@@ -30,7 +28,7 @@ export class UserFormComponent implements OnInit {
   }
 
   post(user: any) {
-    this.userService.updateUser(this.users, user);
+    this.userService.updateUser(user);
   }
 
 }

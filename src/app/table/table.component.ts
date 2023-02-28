@@ -13,23 +13,21 @@ export class TableComponent implements OnInit{
   @Input() tableConfig!: MyTableConfig;
   @Input() data!: any[];
   @Output() newItemEvent = new EventEmitter<any>();
-  filtered!: any[];
   editButtonConfig=editButtonConfig;
   deleteButtonConfig=deleteButtonConfig;
   viewResButtonConfig=viewResButtonConfig;
 
-  constructor(public router: Router) {
+  constructor() {
   }
   ngOnInit(): void {
-    this.filtered=this.data;
   }
 
   applyFilter(searchFor: string, searchValue: string) {
-    this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
+    this.data = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
   }
 
-  getEvent(whichTable:string, data:any[], entity: any, action:string) {
-    this.newItemEvent.emit({whichTable:whichTable, data: data, entity:entity, action: action});
+  getEvent(data:any[], entity: any, action:string) {
+    this.newItemEvent.emit({data: data, entity:entity, action: action});
   }
 
 }
@@ -39,12 +37,14 @@ export class MyTableConfig {
   whichTable:string;
   headers: MyHeaders[];
   search: MySearch;
+  addHeaders:Array<any>;
 
 
-  constructor(headers: MyHeaders[], search:MySearch, whichTable:string) {
+  constructor(headers: MyHeaders[], search:MySearch, whichTable:string, addHeaders:Array<any>) {
     this.whichTable=whichTable;
     this.headers = headers;
     this.search=search;
+    this.addHeaders=addHeaders;
   }
 }
 

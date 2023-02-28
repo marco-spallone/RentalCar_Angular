@@ -8,14 +8,14 @@
 <table class="mt-5 table table-striped table-bordered">
   <thead>
   <th *ngFor="let h of tableConfig.headers">{{h.label}}</th>
-  <th></th><th></th><th></th>
+  <th *ngFor="let addHeaders of tableConfig.addHeaders"></th>
   </thead>
   <tbody>
   <tr *ngFor="let d of data, let rowId = index" [attr.id]="rowId">
     <td *ngFor="let n of tableConfig.headers">{{d[n.key]}}</td>
-    <td><app-button [buttonConfig]="editButtonConfig" (click)="getEvent(tableConfig.whichTable, data, d, 'edit')"></app-button></td>
+    <td><app-button [buttonConfig]="editButtonConfig" (click)="getEvent(data, d, 'edit')"></app-button></td>
     <td *ngIf="tableConfig.whichTable==='users'"><app-button [buttonConfig]="viewResButtonConfig"></app-button></td>
-    <td><app-button [buttonConfig]="deleteButtonConfig" (click)="getEvent(tableConfig.whichTable, data, d, 'delete')"></app-button></td>
+    <td><app-button [buttonConfig]="deleteButtonConfig" (click)="getEvent(data, d, 'delete')"></app-button></td>
   </tr>
   </tbody>
 </table>

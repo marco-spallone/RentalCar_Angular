@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Car} from "../car";
 import {CARS} from "../mock/mock-cars";
+import {USERS} from "../mock/mock-users";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
-
-  car!:Car;
 
   constructor() { }
 
@@ -17,21 +16,19 @@ export class CarsService {
     return cars;
   }
 
-  getCarById(cars:any[], id:number): any{
-    this.car=cars.filter(item => item.id === id)[0];
+  getCarById(id:number){
+    return of(CARS.filter(item => item.id === id)[0]);
   }
 
-  updateCar(cars:any[], car:any): any[]{
-    let indexToUpdate = cars.findIndex(item => item.id === car.id);
-    cars[indexToUpdate] = car;
-    cars = Object.assign([], cars);
-    console.log(cars);
-    return cars;
+  updateCar(car:any){
+    let indexToUpdate = CARS.findIndex(item => item.id === car.id);
+    CARS[indexToUpdate] = car;
+    Object.assign([], CARS);
+    console.log(CARS);
   }
 
-  deleteCar(cars:any[], car:any): any[]{
-    let index = cars.indexOf(car, 0);
-    cars.splice(index, 1);
-    return cars;
+  deleteCar(car:any){
+    let index = CARS.indexOf(car, 0);
+    CARS.splice(index, 1);
   }
 }

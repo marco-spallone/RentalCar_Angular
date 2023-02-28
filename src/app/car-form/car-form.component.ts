@@ -20,7 +20,7 @@ export class CarFormComponent implements OnInit{
       this.id = Number.parseInt(params['id']);
     })
     this.getCars();
-    this.car=this.carsService.car;
+    this.carsService.getCarById(this.id).subscribe(car=> this.car = car);
   }
 
   getCars(): void{
@@ -28,6 +28,6 @@ export class CarFormComponent implements OnInit{
   }
 
   post(car: any) {
-    this.carsService.updateCar(this.cars, car);
+    this.carsService.updateCar(car);
   }
 }
