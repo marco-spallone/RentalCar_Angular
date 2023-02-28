@@ -3,13 +3,14 @@ import {Observable, of} from "rxjs";
 import {Car} from "../car";
 import {CARS} from "../mock/mock-cars";
 import {USERS} from "../mock/mock-users";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   getCars(): Observable<Car[]> {
     const cars = of(CARS);
@@ -23,7 +24,7 @@ export class CarsService {
   updateCar(car:any){
     let indexToUpdate = CARS.findIndex(item => item.id === car.id);
     CARS[indexToUpdate] = car;
-    console.log(CARS);
+    this.router.navigate(['cars']);
   }
 
   deleteCar(car:any){

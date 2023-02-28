@@ -3,6 +3,7 @@ import {usersTableConfig} from "../config/table-config";
 import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
+import {User} from "../user";
 
 @Component({
   selector: 'app-users',
@@ -11,24 +12,25 @@ import {Router} from "@angular/router";
 })
 export class UsersComponent implements OnInit{
   tableConfig!: MyTableConfig;
-  users!:any[];
+  users!:User[];
 
 
   constructor(private router: Router, private userService: UsersService) {
-    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
   ngOnInit(): void{
     this.tableConfig=usersTableConfig;
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
-  action(user:any, action:MyTableActionsEnum) {
+  action(user:User, action:MyTableActionsEnum) {
     switch (action) {
       case MyTableActionsEnum.EDIT:
         this.router.navigate(['editUser', user.id]);
         break;
       case MyTableActionsEnum.DELETE:
         this.userService.deleteUser(user);
+        this.userService.getUsers().subscribe(users => this.users = users);
         break;
       default:
         break;

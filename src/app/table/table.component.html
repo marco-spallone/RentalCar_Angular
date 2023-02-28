@@ -5,15 +5,16 @@
 </select>
 <input #searchValue type="text" class="form-control" id="search" name="search" placeholder="Cerca..."
        (keyup)="applyFilter(searchFor.value, searchValue.value)"/>
+
 <table class="mt-5 table table-striped table-bordered">
   <thead>
   <th *ngFor="let h of tableConfig.headers">{{h.label}}</th>
   <th *ngFor="let addHeaders of tableConfig.actions">{{addHeaders.actionEnum}}</th>
   </thead>
   <tbody>
-  <tr *ngFor="let d of data, let rowId = index" [attr.id]="rowId">
+  <tr *ngFor="let d of filtered, let rowId = index" [attr.id]="rowId">
     <td *ngFor="let n of tableConfig.headers">{{d[n.key]}}</td>
-    <td *ngFor="let act of tableConfig.actions"><app-button [buttonConfig]="act.buttonStyle" (click)="getEvent(data, d, act.actionEnum)"></app-button></td>
+    <td *ngFor="let act of tableConfig.actions"><app-button [buttonConfig]="act.buttonStyle" (click)="getEvent(d, act.actionEnum)"></app-button></td>
   </tr>
   </tbody>
 </table>

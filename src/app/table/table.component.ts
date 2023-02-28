@@ -14,19 +14,20 @@ export class TableComponent implements OnInit{
   @Input() tableConfig!: MyTableConfig;
   @Input() data!: any[];
   @Output() newItemEvent = new EventEmitter<any>();
-  enum=MyTableActionsEnum;
+  filtered!:any[];
 
   constructor() {
   }
   ngOnInit(): void {
+    this.filtered=this.data;
   }
 
   applyFilter(searchFor: string, searchValue: string) {
-    this.data = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
+    this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
   }
 
-  getEvent(data:any[], entity: any, action:MyTableActionsEnum) {
-    this.newItemEvent.emit({data: data, entity:entity, action: action});
+  getEvent(entity: any, action:MyTableActionsEnum) {
+    this.newItemEvent.emit({entity:entity, action: action});
   }
 
 }
@@ -35,14 +36,12 @@ export class TableComponent implements OnInit{
 export class MyTableConfig {
   headers: MyHeaders[];
   search: MySearch;
-  addHeaders:Array<any>;
   actions:MyTableAction[];
 
 
-  constructor(headers: MyHeaders[], search:MySearch, addHeaders:Array<any>, actions:MyTableAction[]) {
+  constructor(headers: MyHeaders[], search:MySearch, actions:MyTableAction[]) {
     this.headers = headers;
     this.search=search;
-    this.addHeaders=addHeaders;
     this.actions=actions;
   }
 }

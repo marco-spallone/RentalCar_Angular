@@ -1,5 +1,10 @@
 import {MyHeaders, MySearch, MyTableAction, MyTableActionsEnum, MyTableConfig} from "../table/table.component";
-import {deleteButtonConfig, editButtonConfig, viewResButtonConfig} from "../button/config/button-config";
+import {
+  addButtonConfig,
+  deleteButtonConfig,
+  editButtonConfig,
+  viewResButtonConfig
+} from "../button/config/button-config";
 
 export const usersTableConfig: MyTableConfig = {
   headers: [
@@ -7,7 +12,6 @@ export const usersTableConfig: MyTableConfig = {
     new MyHeaders('Cognome', 'surname'),
   ],
   search:new MySearch(['name', 'surname']),
-  addHeaders:Array(3).fill(0).map((x,i)=>i),
   actions:[
     new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
     new MyTableAction(MyTableActionsEnum.VIEW_RES, viewResButtonConfig),
@@ -24,7 +28,6 @@ export const carsTableConfig: MyTableConfig ={
     new MyHeaders('Targa', 'targa'),
   ],
   search:new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
-  addHeaders:Array(2).fill(0).map((x,i)=>i),
   actions:[
     new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
     new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)

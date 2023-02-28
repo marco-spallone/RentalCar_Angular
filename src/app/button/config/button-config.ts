@@ -1,5 +1,10 @@
 import { MyButtonConfig } from "../button.component";
 
+export const addButtonConfig:MyButtonConfig = {
+  icon:'',
+  text:'Aggiungi utente',
+  cssClass:'btn btn-outline-info'
+}
 export const editButtonConfig: MyButtonConfig = {
   icon:'<fa name="cog" animation="spin"></fa>',
   text:'Modifica',

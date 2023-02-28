@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {USERS} from "../mock/mock-users";
 import {User} from "../user";
 import {Observable, of} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,10 @@ import {Observable, of} from "rxjs";
 export class UsersService {
 
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   getUsers(): Observable<User[]>{
-    const users = of(USERS);
+    const users = of(USERS.filter(item => !item.isAdmin));
     return users;
   }
 
@@ -23,7 +24,7 @@ export class UsersService {
   updateUser(user:any){
     let indexToUpdate = USERS.findIndex(item => item.id === user.id);
     USERS[indexToUpdate] = user;
-    console.log(USERS);
+    this.router.navigate(['users']);
   }
 
   deleteUser(user:any){
