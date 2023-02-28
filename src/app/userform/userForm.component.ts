@@ -19,12 +19,7 @@ export class UserFormComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = Number.parseInt(params['id']);
     })
-    this.getUsers();
     this.userService.getUserById(this.id).subscribe(user => this.user = user);
-  }
-
-  getUsers(): void{
-    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
   post(user: any) {

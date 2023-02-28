@@ -1,18 +1,21 @@
-import {MyHeaders, MySearch, MyTableActionsEnum, MyTableConfig} from "../table/table.component";
+import {MyHeaders, MySearch, MyTableAction, MyTableActionsEnum, MyTableConfig} from "../table/table.component";
+import {deleteButtonConfig, editButtonConfig, viewResButtonConfig} from "../button/config/button-config";
 
 export const usersTableConfig: MyTableConfig = {
-  whichTable:'users',
   headers: [
     new MyHeaders('Nome', 'name'),
     new MyHeaders('Cognome', 'surname'),
   ],
   search:new MySearch(['name', 'surname']),
   addHeaders:Array(3).fill(0).map((x,i)=>i),
-  actions:[MyTableActionsEnum.NEW_ROW, MyTableActionsEnum.EDIT, MyTableActionsEnum.DELETE]
+  actions:[
+    new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
+    new MyTableAction(MyTableActionsEnum.VIEW_RES, viewResButtonConfig),
+    new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
+  ]
 }
 
 export const carsTableConfig: MyTableConfig ={
-  whichTable:'cars',
   headers: [
     new MyHeaders('Marca', 'marca'),
     new MyHeaders('Modello', 'modello'),
@@ -22,5 +25,8 @@ export const carsTableConfig: MyTableConfig ={
   ],
   search:new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
   addHeaders:Array(2).fill(0).map((x,i)=>i),
-  actions:[MyTableActionsEnum.NEW_ROW, MyTableActionsEnum.EDIT, MyTableActionsEnum.DELETE]
+  actions:[
+    new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
+    new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
+  ]
 }

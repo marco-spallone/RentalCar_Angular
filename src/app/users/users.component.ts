@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {usersTableConfig} from "../config/table-config";
-import {MyTableConfig} from "../table/table.component";
+import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
-import {USERS} from "../mock/mock-users";
 
 @Component({
   selector: 'app-users',
@@ -23,16 +22,12 @@ export class UsersComponent implements OnInit{
     this.tableConfig=usersTableConfig;
   }
 
-  action(user:any, action:string) {
+  action(user:any, action:MyTableActionsEnum) {
     switch (action) {
-      case 'edit':
-        this.userService.getUserById(user.id);
+      case MyTableActionsEnum.EDIT:
         this.router.navigate(['editUser', user.id]);
         break;
-      case 'post':
-        this.userService.updateUser(user);
-        break;
-      case 'delete':
+      case MyTableActionsEnum.DELETE:
         this.userService.deleteUser(user);
         break;
       default:

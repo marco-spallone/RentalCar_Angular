@@ -19,12 +19,7 @@ export class CarFormComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.id = Number.parseInt(params['id']);
     })
-    this.getCars();
     this.carsService.getCarById(this.id).subscribe(car=> this.car = car);
-  }
-
-  getCars(): void{
-    this.carsService.getCars().subscribe(cars => this.cars = cars);
   }
 
   post(car: any) {

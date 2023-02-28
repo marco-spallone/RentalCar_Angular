@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {carsTableConfig} from "../config/table-config";
-import {editButtonConfig, deleteButtonConfig} from "../button/config/button-config";
-import {MyTableConfig} from "../table/table.component";
+import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {CarsService} from "../services/cars.service";
 import {Router} from "@angular/router";
+import {Car} from "../car";
 
 @Component({
   selector: 'app-cars',
@@ -12,27 +12,23 @@ import {Router} from "@angular/router";
 })
 export class CarsComponent implements OnInit{
   tableConfig!: MyTableConfig;
-  cars!: any[];
+  cars!: Car[];
 
 
   constructor(private router: Router, private carService:CarsService) {
-    this.carService.getCars().subscribe(cars => this.cars = cars);
   }
 
   ngOnInit() {
     this.tableConfig=carsTableConfig;
+    this.carService.getCars().subscribe(cars => this.cars = cars);
   }
 
-  action(car:any, action:string){
+  action(car:Car, action:MyTableActionsEnum){
     switch (action) {
-      case 'edit':
-        this.carService.getCarById(car.id);
+      case MyTableActionsEnum.EDIT:
         this.router.navigate(['editCar', car.id]);
         break;
-      case 'post':
-        this.carService.updateCar(car);
-        break;
-      case 'delete':
+      case MyTableActionsEnum.DELETE:
         this.carService.deleteCar(car);
         break;
       default:

@@ -3,6 +3,7 @@ import {editButtonConfig, deleteButtonConfig, viewResButtonConfig} from "../butt
 import {Router} from "@angular/router";
 import {UsersService} from "../services/users.service";
 import {CarsService} from "../services/cars.service";
+import {MyButtonConfig} from "../button/button.component";
 
 @Component({
   selector: 'app-table',
@@ -13,9 +14,6 @@ export class TableComponent implements OnInit{
   @Input() tableConfig!: MyTableConfig;
   @Input() data!: any[];
   @Output() newItemEvent = new EventEmitter<any>();
-  editButtonConfig=editButtonConfig;
-  deleteButtonConfig=deleteButtonConfig;
-  viewResButtonConfig=viewResButtonConfig;
   enum=MyTableActionsEnum;
 
   constructor() {
@@ -27,7 +25,7 @@ export class TableComponent implements OnInit{
     this.data = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
   }
 
-  getEvent(data:any[], entity: any, action:string) {
+  getEvent(data:any[], entity: any, action:MyTableActionsEnum) {
     this.newItemEvent.emit({data: data, entity:entity, action: action});
   }
 
@@ -35,15 +33,13 @@ export class TableComponent implements OnInit{
 
 
 export class MyTableConfig {
-  whichTable:string;
   headers: MyHeaders[];
   search: MySearch;
   addHeaders:Array<any>;
-  actions:MyTableActionsEnum[];
+  actions:MyTableAction[];
 
 
-  constructor(headers: MyHeaders[], search:MySearch, whichTable:string, addHeaders:Array<any>, actions:MyTableActionsEnum[]) {
-    this.whichTable=whichTable;
+  constructor(headers: MyHeaders[], search:MySearch, addHeaders:Array<any>, actions:MyTableAction[]) {
     this.headers = headers;
     this.search=search;
     this.addHeaders=addHeaders;
@@ -70,7 +66,19 @@ export class MySearch{
 }
 
 export enum MyTableActionsEnum{
-  NEW_ROW = 'add',
-  EDIT = 'edit',
-  DELETE = 'delete'
+  NEW_ROW = 'Aggiungi',
+  EDIT = 'Modifica',
+  VIEW_RES = 'Visualizza',
+  DELETE = 'Elimina'
+}
+
+export class MyTableAction{
+  actionEnum:MyTableActionsEnum;
+  buttonStyle:MyButtonConfig;
+
+
+  constructor(actionEnum: MyTableActionsEnum, buttonStyle: MyButtonConfig) {
+    this.actionEnum = actionEnum;
+    this.buttonStyle = buttonStyle;
+  }
 }
