@@ -16,6 +16,7 @@ export class TableComponent implements OnInit{
   editButtonConfig=editButtonConfig;
   deleteButtonConfig=deleteButtonConfig;
   viewResButtonConfig=viewResButtonConfig;
+  enum=MyTableActionsEnum;
 
   constructor() {
   }
@@ -38,13 +39,15 @@ export class MyTableConfig {
   headers: MyHeaders[];
   search: MySearch;
   addHeaders:Array<any>;
+  actions:MyTableActionsEnum[];
 
 
-  constructor(headers: MyHeaders[], search:MySearch, whichTable:string, addHeaders:Array<any>) {
+  constructor(headers: MyHeaders[], search:MySearch, whichTable:string, addHeaders:Array<any>, actions:MyTableActionsEnum[]) {
     this.whichTable=whichTable;
     this.headers = headers;
     this.search=search;
     this.addHeaders=addHeaders;
+    this.actions=actions;
   }
 }
 
@@ -64,4 +67,10 @@ export class MySearch{
   constructor(columns: string[]) {
     this.columns = columns;
   }
+}
+
+export enum MyTableActionsEnum{
+  NEW_ROW = 'add',
+  EDIT = 'edit',
+  DELETE = 'delete'
 }

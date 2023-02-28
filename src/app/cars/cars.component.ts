@@ -21,14 +21,9 @@ export class CarsComponent implements OnInit{
 
   ngOnInit() {
     this.tableConfig=carsTableConfig;
-    this.getCars();
   }
 
-  getCars(): void{
-    this.carService.getCars().subscribe(cars => this.cars = cars);
-  }
-
-  action(cars:any[], car:any, action:string){
+  action(car:any, action:string){
     switch (action) {
       case 'edit':
         this.carService.getCarById(car.id);

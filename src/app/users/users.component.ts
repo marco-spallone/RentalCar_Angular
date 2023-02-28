@@ -3,6 +3,7 @@ import {usersTableConfig} from "../config/table-config";
 import {MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
+import {USERS} from "../mock/mock-users";
 
 @Component({
   selector: 'app-users',
@@ -11,22 +12,18 @@ import {Router} from "@angular/router";
 })
 export class UsersComponent implements OnInit{
   tableConfig!: MyTableConfig;
-  users!: any[];
+  users!:any[];
 
 
   constructor(private router: Router, private userService: UsersService) {
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
   ngOnInit(): void{
     this.tableConfig=usersTableConfig;
-    this.getUsers();
   }
 
-  getUsers(): void{
-    this.userService.getUsers().subscribe(users => this.users = users);
-  }
-
-  action(users:any[], user:any, action:string) {
+  action(user:any, action:string) {
     switch (action) {
       case 'edit':
         this.userService.getUserById(user.id);

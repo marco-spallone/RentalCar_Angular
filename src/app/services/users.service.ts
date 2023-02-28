@@ -23,7 +23,6 @@ export class UsersService {
   updateUser(user:any){
     let indexToUpdate = USERS.findIndex(item => item.id === user.id);
     USERS[indexToUpdate] = user;
-    Object.assign([], USERS);
     console.log(USERS);
   }
 

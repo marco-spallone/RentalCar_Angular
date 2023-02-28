@@ -23,7 +23,6 @@ export class CarsService {
   updateCar(car:any){
     let indexToUpdate = CARS.findIndex(item => item.id === car.id);
     CARS[indexToUpdate] = car;
-    Object.assign([], CARS);
     console.log(CARS);
   }
 

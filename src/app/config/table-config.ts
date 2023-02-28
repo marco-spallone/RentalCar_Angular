@@ -1,4 +1,4 @@
-import {MyHeaders, MySearch, MyTableConfig} from "../table/table.component";
+import {MyHeaders, MySearch, MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 
 export const usersTableConfig: MyTableConfig = {
   whichTable:'users',
@@ -7,7 +7,8 @@ export const usersTableConfig: MyTableConfig = {
     new MyHeaders('Cognome', 'surname'),
   ],
   search:new MySearch(['name', 'surname']),
-  addHeaders:Array(3).fill(0).map((x,i)=>i)
+  addHeaders:Array(3).fill(0).map((x,i)=>i),
+  actions:[MyTableActionsEnum.NEW_ROW, MyTableActionsEnum.EDIT, MyTableActionsEnum.DELETE]
 }
 
 export const carsTableConfig: MyTableConfig ={
@@ -20,5 +21,6 @@ export const carsTableConfig: MyTableConfig ={
     new MyHeaders('Targa', 'targa'),
   ],
   search:new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
-  addHeaders:Array(2).fill(0).map((x,i)=>i)
+  addHeaders:Array(2).fill(0).map((x,i)=>i),
+  actions:[MyTableActionsEnum.NEW_ROW, MyTableActionsEnum.EDIT, MyTableActionsEnum.DELETE]
 }
