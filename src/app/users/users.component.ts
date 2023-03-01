@@ -32,8 +32,7 @@ export class UsersComponent implements OnInit{
         break;
       case MyTableActionsEnum.DELETE:
         this.userService.deleteUser(user);
-        this.userService.getUsers().subscribe(users => this.users = users)
-        console.log(this.users);
+        this.userService.getUsers().subscribe(users => this.users = users);
         break;
       default:
         break;

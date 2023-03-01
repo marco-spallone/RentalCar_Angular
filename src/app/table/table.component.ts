@@ -31,6 +31,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('inchanghe');
     this.filtered=this.data;
   }
 

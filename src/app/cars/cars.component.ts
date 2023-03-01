@@ -30,6 +30,7 @@ export class CarsComponent implements OnInit{
         break;
       case MyTableActionsEnum.DELETE:
         this.carService.deleteCar(car);
+        this.carService.getCars().subscribe(cars => this.cars = cars);
         break;
       default:
         break;

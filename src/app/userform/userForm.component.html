@@ -19,7 +19,7 @@
           Surname is required.
         </div>
       </div>
-      <label for="username">Username:</label><input #username=ngModel name="username" id="username" type="text" class="form-control" required minlength="8"
+      <label for="username">Username:</label><input #username=ngModel name="username" id="username" type="text" class="form-control" required minlength="6"
                                                     [(ngModel)]="user.username"/>
       <div *ngIf="username.invalid && (username.dirty || username.touched)"
            class="alert">
@@ -27,7 +27,7 @@
           Username obbligatorio.
         </div>
         <div *ngIf="username.errors?.['minlength']" style="color:red">
-          L'username deve essere lungo almeno 8 caratteri.
+          L'username deve essere lungo almeno 6 caratteri.
         </div>
       </div>
       <label for="pass">Password:</label><input #password=ngModel name="pass" id="pass" type="password" class="form-control" required minlength="8"

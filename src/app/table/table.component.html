@@ -17,7 +17,7 @@
   <th *ngFor="let addHeaders of tableConfig.actions" class="text-center">{{addHeaders.actionEnum}}</th>
   </thead>
   <tbody>
-  <tr *ngFor="let d of filtered | sort:order:column | pagination:tableConfig.pagination.itemPerPage:page , let rowId = index" [attr.id]="rowId">
+  <tr *ngFor="let d of filtered | sort:order:column | pagination:tableConfig.pagination.itemPerPage:page">
     <td *ngFor="let n of tableConfig.headers">{{d[n.key]}}</td>
     <td *ngFor="let act of tableConfig.actions"><app-button [buttonConfig]="act.buttonStyle" (click)="getEvent(d, act.actionEnum)"></app-button></td>
   </tr>

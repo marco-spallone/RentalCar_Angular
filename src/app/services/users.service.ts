@@ -27,7 +27,7 @@ export class UsersService {
     this.router.navigate(['users']);
   }
 
-  deleteUser(user:any){
+  deleteUser(user:User){
     let index = USERS.indexOf(user, 0);
     USERS.splice(index, 1);
   }

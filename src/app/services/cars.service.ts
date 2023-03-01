@@ -26,7 +26,7 @@ export class CarsService {
     this.router.navigate(['cars']);
   }
 
-  deleteCar(car:any){
+  deleteCar(car:Car){
     let index = CARS.indexOf(car, 0);
     CARS.splice(index, 1);
   }
