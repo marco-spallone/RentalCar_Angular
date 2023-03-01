@@ -12,6 +12,7 @@ export class UserFormComponent implements OnInit {
   id!:number
   user!:User;
   users!:User[];
+  valid:boolean=true;
 
   constructor(private route: ActivatedRoute, private userService: UsersService) {
   }
@@ -22,8 +23,13 @@ export class UserFormComponent implements OnInit {
     this.userService.getUserById(this.id).subscribe(user => this.user = user);
   }
 
-  post(user: any) {
-    this.userService.updateUser(user);
+  post(user: User) {
+    if(user.username.length>=8 && user.password.length>=8 && user.name!='' && user.surname!=''){
+      this.userService.updateUser(user);
+      this.valid=true;
+    } else {
+      this.valid=false;
+    }
   }
 
 }

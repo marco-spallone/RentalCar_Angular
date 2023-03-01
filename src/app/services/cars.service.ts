@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Car} from "../car";
 import {CARS} from "../mock/mock-cars";
-import {USERS} from "../mock/mock-users";
 import {Router} from "@angular/router";
 
 @Injectable({

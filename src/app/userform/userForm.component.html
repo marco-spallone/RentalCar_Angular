@@ -3,15 +3,52 @@
     <div class="mx-auto mt-3 col-sm-6 col-md-6">
       <h2>Modifica dati</h2>
 
-      <label for="name">Nome:</label><input name="name" id="name" type="text" class="form-control"
+      <label for="name">Nome:</label><input #name=ngModel name="name" id="name" type="text" class="form-control" required
                                             [(ngModel)]="user.name"/>
-      <label for="surname">Cognome:</label><input name="surname" id="surname" type="text" class="form-control"
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+           class="alert">
+        <div *ngIf="name.errors?.['required']" style="color:red">
+          Name is required.
+        </div>
+      </div>
+      <label for="surname">Cognome:</label><input #surname=ngModel name="surname" id="surname" type="text" class="form-control" required
                                                   [(ngModel)]="user.surname"/>
-      <label for="username">Username:</label><input name="username" id="username" type="text" class="form-control"
+      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+           class="alert">
+        <div *ngIf="surname.errors?.['required']" style="color:red">
+          Surname is required.
+        </div>
+      </div>
+      <label for="username">Username:</label><input #username=ngModel name="username" id="username" type="text" class="form-control" required minlength="8"
                                                     [(ngModel)]="user.username"/>
-      <label for="pass">Password:</label><input name="pass" id="pass" type="password" class="form-control"
+      <div *ngIf="username.invalid && (username.dirty || username.touched)"
+           class="alert">
+        <div *ngIf="username.errors?.['required']" style="color:red">
+          Username obbligatorio.
+        </div>
+        <div *ngIf="username.errors?.['minlength']" style="color:red">
+          L'username deve essere lungo almeno 8 caratteri.
+        </div>
+      </div>
+      <label for="pass">Password:</label><input #password=ngModel name="pass" id="pass" type="password" class="form-control" required minlength="8"
                                                 [(ngModel)]="user.password"/>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+           class="alert">
+        <div *ngIf="password.errors?.['required']" style="color:red">
+          Password obbligatoria.
+        </div>
+        <div *ngIf="password.errors?.['minlength']" style="color:red">
+          La password deve essere lunga almeno 8 caratteri.
+        </div>
+      </div>
       <button type="button" class="mt-3 btn btn-success" (click)="post(user)">Conferma</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="!valid" class="container">
+  <div class="row">
+    <div class="mx-auto mt-3 col-sm-6 col-md-6" style="color:red">
+      <p>Compilazione campi errata!</p>
     </div>
   </div>
 </div>

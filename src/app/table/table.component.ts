@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {editButtonConfig, deleteButtonConfig, viewResButtonConfig} from "../button/config/button-config";
 import {Router} from "@angular/router";
 import {UsersService} from "../services/users.service";
@@ -10,7 +10,7 @@ import {MyButtonConfig} from "../button/button.component";
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit, OnChanges {
   @Input() tableConfig!: MyTableConfig;
   @Input() data!: any[];
   @Output() newItemEvent = new EventEmitter<any>();
@@ -21,6 +21,11 @@ export class TableComponent implements OnInit{
   ngOnInit(): void {
     this.filtered=this.data;
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.filtered=this.data;
+  }
+
 
   applyFilter(searchFor: string, searchValue: string) {
     this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
