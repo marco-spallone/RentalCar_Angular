@@ -4,8 +4,6 @@ import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
 import {User} from "../user";
-import {MyButtonConfig} from "../button/button.component";
-import {addButtonConfig} from "../button/config/button-config";
 
 @Component({
   selector: 'app-users',

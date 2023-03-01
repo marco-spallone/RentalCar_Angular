@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import { CarFormComponent } from './car-form/car-form.component';
 import { PaginationPipe } from './pipes/pagination.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 
 
@@ -27,7 +28,8 @@ import { SortPipe } from './pipes/sort.pipe';
     UserFormComponent,
     CarFormComponent,
     PaginationPipe,
-    SortPipe
+    SortPipe,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,

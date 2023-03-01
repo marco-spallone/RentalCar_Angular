@@ -30,7 +30,7 @@ export class TableComponent implements OnInit, OnChanges {
     this.onItemPerPageChange()
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     console.log('inchanghe');
     this.filtered=this.data;
   }
