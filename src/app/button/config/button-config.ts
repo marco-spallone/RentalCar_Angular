@@ -20,3 +20,13 @@ export const deleteButtonConfig: MyButtonConfig = {
   text:'Elimina',
   cssClass:'btn btn-outline-danger'
 }
+export const prevButtonConfig: MyButtonConfig = {
+  icon: '',
+  text: '<',
+  cssClass: 'mt-3 btn btn-outline-warning'
+}
+export const nextButtonConfig: MyButtonConfig = {
+  icon: '',
+  text: '>',
+  cssClass: 'mt-3 btn btn-outline-warning'
+}

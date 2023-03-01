@@ -1,6 +1,12 @@
-import {MyHeaders, MySearch, MyTableAction, MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {
-  addButtonConfig,
+  MyHeaders, MyOrder,
+  MyPagination,
+  MySearch,
+  MyTableAction,
+  MyTableActionsEnum,
+  MyTableConfig
+} from "../table/table.component";
+import {
   deleteButtonConfig,
   editButtonConfig,
   viewResButtonConfig
@@ -16,7 +22,9 @@ export const usersTableConfig: MyTableConfig = {
     new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
     new MyTableAction(MyTableActionsEnum.VIEW_RES, viewResButtonConfig),
     new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
-  ]
+  ],
+  pagination: new MyPagination(20, [10, 20, 50]),
+  order: new MyOrder('name', 'desc'),
 }
 
 export const carsTableConfig: MyTableConfig ={
@@ -31,5 +39,7 @@ export const carsTableConfig: MyTableConfig ={
   actions:[
     new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
     new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
-  ]
+  ],
+  pagination: new MyPagination(20, [10, 20, 50]),
+  order: new MyOrder('marca', 'desc'),
 }

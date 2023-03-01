@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserFormComponent } from './userform/userForm.component';
 import {FormsModule} from "@angular/forms";
 import { CarFormComponent } from './car-form/car-form.component';
+import { PaginationPipe } from './pipes/pagination.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 
 
@@ -23,7 +25,9 @@ import { CarFormComponent } from './car-form/car-form.component';
     CarsComponent,
     TableComponent,
     UserFormComponent,
-    CarFormComponent
+    CarFormComponent,
+    PaginationPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
