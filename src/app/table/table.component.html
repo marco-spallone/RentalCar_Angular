@@ -11,7 +11,7 @@
   <option *ngFor="let i of tableConfig.pagination.itemPerPageOptions">{{i}}</option>
 </select>
 
-<table class="mt-5 table table-striped table-bordered">
+<table *ngIf="filtered!=null" class="mt-5 table table-striped table-bordered">
   <thead>
   <th *ngFor="let h of tableConfig.headers" class="text-center" (click)="sort(h.key)">{{h.label}}</th>
   <th *ngFor="let addHeaders of tableConfig.actions" class="text-center">{{addHeaders.actionEnum}}</th>

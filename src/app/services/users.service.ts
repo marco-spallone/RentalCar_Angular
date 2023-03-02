@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class UsersService {
 
-
+  private usersUrl = 'api/users';
   constructor(private router:Router) { }
 
   getUsers(): Observable<User[]>{

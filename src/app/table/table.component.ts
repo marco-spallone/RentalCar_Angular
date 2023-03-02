@@ -27,12 +27,12 @@ export class TableComponent implements OnInit, OnChanges {
     this.filtered=this.data;
     this.order = this.tableConfig.order.orderType;
     this.sort(this.tableConfig.order.defaultColumn);
-    this.onItemPerPageChange()
+
   }
 
   ngOnChanges() {
-    console.log('inchanghe');
     this.filtered=this.data;
+    this.onItemPerPageChange()
   }
 
   sort(column: string) {

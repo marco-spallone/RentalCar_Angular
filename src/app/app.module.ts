@@ -14,7 +14,9 @@ import { CarFormComponent } from './car-form/car-form.component';
 import { PaginationPipe } from './pipes/pagination.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { ReservationsComponent } from './reservations/reservations.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 
 @NgModule({
@@ -35,7 +37,10 @@ import { ReservationsComponent } from './reservations/reservations.component';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false })
   ],
   providers: [],
   bootstrap: [AppComponent]

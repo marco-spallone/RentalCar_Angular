@@ -4,6 +4,7 @@ import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {CarsService} from "../services/cars.service";
 import {Router} from "@angular/router";
 import {Car} from "../car";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-cars',
@@ -19,8 +20,8 @@ export class CarsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.tableConfig=carsTableConfig;
     this.carService.getCars().subscribe(cars => this.cars = cars);
+    this.tableConfig=carsTableConfig;
   }
 
   action(car:Car, action:MyTableActionsEnum){
@@ -29,8 +30,8 @@ export class CarsComponent implements OnInit{
         this.router.navigate(['editCar', car.id]);
         break;
       case MyTableActionsEnum.DELETE:
-        this.carService.deleteCar(car);
-        this.carService.getCars().subscribe(cars => this.cars = cars);
+        this.cars = this.cars.filter(c => c !== car);
+        this.carService.deleteCar(car).subscribe();
         break;
       default:
         break;

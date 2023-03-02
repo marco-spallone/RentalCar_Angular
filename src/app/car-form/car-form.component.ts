@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CarsService} from "../services/cars.service";
 import {Car} from "../car";
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-car-form',
@@ -13,7 +15,7 @@ export class CarFormComponent implements OnInit{
   car!:Car;
   cars!:Car[];
 
-  constructor(private route: ActivatedRoute, private carsService: CarsService) {
+  constructor(private route: ActivatedRoute, private router:Router, private carsService: CarsService, private location:Location) {
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -23,6 +25,6 @@ export class CarFormComponent implements OnInit{
   }
 
   post(car: any) {
-    this.carsService.updateCar(car);
+    this.carsService.updateCar(car).subscribe(() => this.location.back());
   }
 }
