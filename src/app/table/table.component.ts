@@ -82,6 +82,7 @@ export class TableComponent implements OnInit, OnChanges {
 
   applyFilter(searchFor: string, searchValue: string) {
     this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
+    this.page=1;
   }
 
   getEvent(entity: any, action:MyTableActionsEnum) {

@@ -25,6 +25,9 @@ export class CarFormComponent implements OnInit{
   }
 
   post(car: any) {
-    this.carsService.updateCar(car).subscribe(() => this.location.back());
+    this.carsService.updateCar(car).subscribe(() => {
+      this.carsService.getCars().subscribe(cars => this.cars = cars);
+      this.router.navigate(['cars'])
+    });
   }
 }

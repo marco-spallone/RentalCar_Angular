@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Car} from "../car";
-import {CARS} from "../mock/mock-cars";
 import {Router} from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -9,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CarsService {
-  private carsUrl = 'http://localhost:4200/api/CARS_DB';
+  private carsUrl = 'api/CARS_DB';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -17,7 +16,6 @@ export class CarsService {
   constructor(private router:Router, private http:HttpClient) { }
 
   getCars(): Observable<Car[]> {
-    console.log(this.http.get<Car[]>(this.carsUrl));
     return this.http.get<Car[]>(this.carsUrl);
   }
 

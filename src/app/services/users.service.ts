@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
-import {USERS} from "../mock/mock-users";
 import {User} from "../user";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  private usersUrl = 'api/users';
-  constructor(private router:Router) { }
+  private usersUrl = 'api/USERS_DB';
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  constructor(private router:Router, private http:HttpClient) { }
 
   getUsers(): Observable<User[]>{
-    const users = of(USERS.filter(item => !item.isAdmin));
-    return users;
+    return this.http.get<User[]>(this.usersUrl);
   }
 
-  getUserById(id:number){
-    return of(USERS.filter(item => item.id === id)[0]);
+  getUserById(id:number): Observable<User>{
+    const url = `${this.usersUrl}/${id}`;
+    return this.http.get<User>(url);
   }
 
-  updateUser(user:any){
-    let indexToUpdate = USERS.findIndex(item => item.id === user.id);
-    USERS[indexToUpdate] = user;
-    this.router.navigate(['users']);
+  updateUser(user:User): Observable<any>{
+    return this.http.put(this.usersUrl, user, this.httpOptions);
   }
 
-  deleteUser(user:User){
-    let index = USERS.indexOf(user, 0);
-    USERS.splice(index, 1);
+  deleteUser(user:User): Observable<User>{
+    const url = `${this.usersUrl}/${user.id}`;
+    return this.http.delete<User>(url, this.httpOptions);
   }
 }

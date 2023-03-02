@@ -10,13 +10,14 @@ import { TableComponent } from './table/table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserFormComponent } from './userform/userForm.component';
 import {FormsModule} from "@angular/forms";
-import { CarFormComponent } from './car-form/car-form.component';
+import { CarFormComponent } from './carform/car-form.component';
 import { PaginationPipe } from './pipes/pagination.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { ReservationFormComponent } from './reservationform/reservation-form.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     CarFormComponent,
     PaginationPipe,
     SortPipe,
-    ReservationsComponent
+    ReservationsComponent,
+    ReservationFormComponent
   ],
   imports: [
     BrowserModule,
