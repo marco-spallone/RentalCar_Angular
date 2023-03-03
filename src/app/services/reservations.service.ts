@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {filter, Observable, of} from "rxjs";
-import {Reservation} from "../reservation";
+import {Reservation} from "../interfaces/reservation";
 import {RESERVATIONS} from "../mock/mock-reservations";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {User} from "../user";
+import {User} from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'

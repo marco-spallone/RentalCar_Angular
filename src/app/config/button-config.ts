@@ -1,4 +1,4 @@
-import { MyButtonConfig } from "../button.component";
+import { MyButtonConfig } from "../button/button.component";
 
 export const addButtonConfig:MyButtonConfig = {
   icon:'',

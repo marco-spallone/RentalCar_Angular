@@ -12,7 +12,7 @@ import {
   deleteButtonConfig,
   editButtonConfig,
   viewResButtonConfig
-} from "../button/config/button-config";
+} from "./button-config";
 
 export const usersTableConfig: MyTableConfig = {
   headers: [

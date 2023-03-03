@@ -1,4 +1,4 @@
-import {Reservation} from "../reservation";
+import {Reservation} from "../interfaces/reservation";
 
 export const RESERVATIONS: Reservation[] = [{
   "id": 1,

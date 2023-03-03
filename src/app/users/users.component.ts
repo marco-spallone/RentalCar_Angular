@@ -3,7 +3,7 @@ import {usersTableConfig} from "../config/table-config";
 import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
-import {User} from "../user";
+import {User} from "../interfaces/user";
 
 @Component({
   selector: 'app-users',
@@ -26,10 +26,10 @@ export class UsersComponent implements OnInit{
   action(user:User, action:MyTableActionsEnum) {
     switch (action) {
       case MyTableActionsEnum.NEW_ROW:
-        this.router.navigate(['editUser', action, this.users.length+1]);
+        this.router.navigate(['addUser', action]);
         break;
       case MyTableActionsEnum.EDIT:
-        this.router.navigate(['editUser', action, user.id]);
+        this.router.navigate(['editUser', user.id, action]);
         break;
       case MyTableActionsEnum.DELETE:
         this.userService.deleteUser(user).subscribe(() => {

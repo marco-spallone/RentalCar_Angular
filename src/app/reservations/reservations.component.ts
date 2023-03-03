@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Reservation} from "../reservation";
+import {Reservation} from "../interfaces/reservation";
 import {ReservationsService} from "../services/reservations.service";
 import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {reservationsTableConfig} from "../config/table-config";
@@ -12,9 +12,8 @@ import {reservationsTableConfig} from "../config/table-config";
 })
 export class ReservationsComponent implements OnInit{
   tableConfig!:MyTableConfig;
-  id!:number;
+  userId!:number;
   reservations!:Reservation[];
-  newId!:number;
 
   constructor(private route:ActivatedRoute, private router:Router, private reservationsService: ReservationsService) {
   }
@@ -22,18 +21,18 @@ export class ReservationsComponent implements OnInit{
   ngOnInit() {
     this.tableConfig=reservationsTableConfig;
     this.route.params.subscribe(params => {
-      this.id = Number.parseInt(params['id']);
+      this.userId = Number.parseInt(params['id']);
     })
     this.reservationsService.getReservations().subscribe(reservations =>{
-      this.reservations = reservations.filter(item => item.id_utente===this.id);
-      this.newId = reservations.length+1;
+      this.reservations = reservations.filter(item => item.id_utente===this.userId);
+      console.log(this.reservations);
     });
   }
 
   action(entity:Reservation, action:MyTableActionsEnum){
     switch (action){
       case MyTableActionsEnum.NEW_ROW:
-        this.router.navigate(['editReservation', action, this.id, this.newId]);
+        this.router.navigate(['addReservation', action, this.userId]);
         break;
       default:
         break;

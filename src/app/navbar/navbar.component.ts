@@ -7,4 +7,11 @@ import {Component} from '@angular/core';
 })
 export class NavbarComponent {
 
+  show:boolean=false;
+
+  menu(){
+    console.log('po');
+    this.show=!this.show;
+  }
+
 }

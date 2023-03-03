@@ -8,7 +8,7 @@
       <div *ngIf="name.invalid && (name.dirty || name.touched)"
            class="alert">
         <div *ngIf="name.errors?.['required']" style="color:red">
-          Nome obbligatorio
+          Nome obbligatorio. Il nome non può iniziare con uno spazio.
         </div>
       </div>
       <label for="surname">Cognome:</label><input #surname=ngModel name="surname" id="surname" type="text" class="form-control" required
@@ -16,7 +16,7 @@
       <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
            class="alert">
         <div *ngIf="surname.errors?.['required']" style="color:red">
-          Cognome obbligatorio
+          Cognome obbligatorio. Il cognome non può iniziare con uno spazio.
         </div>
       </div>
       <label for="username">Username:</label><input #username=ngModel name="username" id="username" type="text" class="form-control" required minlength="6"
@@ -24,7 +24,7 @@
       <div *ngIf="username.invalid && (username.dirty || username.touched)"
            class="alert">
         <div *ngIf="username.errors?.['required']" style="color:red">
-          Username obbligatorio
+          Username obbligatorio. L'username deve contenere almeno 8 caratteri e non può contenere spazi.
         </div>
         <div *ngIf="username.errors?.['minlength']" style="color:red">
           L'username deve essere lungo almeno 6 caratteri
@@ -35,7 +35,7 @@
       <div *ngIf="password.invalid && (password.dirty || password.touched)"
            class="alert">
         <div *ngIf="password.errors?.['required']" style="color:red">
-          Password obbligatoria.
+          Password obbligatoria. La password deve contenere almeno 8 caratteri e non può contenere spazi.
         </div>
         <div *ngIf="password.errors?.['minlength']" style="color:red">
           La password deve essere lunga almeno 8 caratteri

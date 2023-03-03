@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {prevButtonConfig, nextButtonConfig} from "../button/config/button-config";
+import {prevButtonConfig, nextButtonConfig} from "../config/button-config";
 import {MyButtonConfig} from "../button/button.component";
 
 @Component({
@@ -32,7 +32,7 @@ export class TableComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.filtered=this.data;
-    this.onItemPerPageChange()
+    this.onItemPerPageChange();
   }
 
   sort(column: string) {
@@ -46,13 +46,15 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   onItemPerPageChange(){
-    this.maxPages=this.data.length/this.tableConfig.pagination.itemPerPage;
-    if(this.maxPages%1===0){
-      this.iterableMaxPages = new Array(Math.floor(this.maxPages)).fill(this.maxPages).map((x,i)=>i);
-    } else {
-      this.iterableMaxPages = new Array(Math.floor(this.maxPages)+1).fill(this.maxPages).map((x,i)=>i);
+    if(this.filtered!=null){
+      this.maxPages=this.filtered.length/this.tableConfig.pagination.itemPerPage;
+      if(this.maxPages%1===0){
+        this.iterableMaxPages = new Array(Math.floor(this.maxPages)).fill(this.maxPages).map((x,i)=>i);
+      } else {
+        this.iterableMaxPages = new Array(Math.floor(this.maxPages)+1).fill(this.maxPages).map((x,i)=>i);
+      }
+      this.page=1;
     }
-    this.page=1;
   }
 
   setPageButton(page:number):MyButtonConfig{
@@ -82,7 +84,7 @@ export class TableComponent implements OnInit, OnChanges {
 
   applyFilter(searchFor: string, searchValue: string) {
     this.filtered = this.data.filter((i: any) => i[searchFor.toLowerCase()].toString().toLowerCase().includes(searchValue.toLowerCase()));
-    this.page=1;
+    this.onItemPerPageChange();
   }
 
   getEvent(entity: any, action:MyTableActionsEnum) {
