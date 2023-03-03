@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Car} from "../car";
 import {Router} from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {User} from "../user";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class CarsService {
   getCarById(id:number): Observable<Car>{
     const url = `${this.carsUrl}/${id}`;
     return this.http.get<Car>(url);
+  }
+
+  addCar(car:Car): Observable<Car>{
+    return this.http.post<Car>(this.carsUrl, car, this.httpOptions);
   }
 
   updateCar(car:Car): Observable<any>{

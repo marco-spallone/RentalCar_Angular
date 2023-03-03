@@ -25,8 +25,11 @@ export class CarsComponent implements OnInit{
 
   action(car:Car, action:MyTableActionsEnum){
     switch (action) {
+      case MyTableActionsEnum.NEW_ROW:
+        this.router.navigate(['editCar', action, this.cars.length+1]);
+        break;
       case MyTableActionsEnum.EDIT:
-        this.router.navigate(['editCar', car.id]);
+        this.router.navigate(['editCar', action, car.id]);
         break;
       case MyTableActionsEnum.DELETE:
         this.carService.deleteCar(car).subscribe(() => {

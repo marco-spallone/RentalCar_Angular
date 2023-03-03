@@ -4,7 +4,6 @@ import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
 import {User} from "../user";
-import {filter} from "rxjs";
 
 @Component({
   selector: 'app-users',
@@ -26,13 +25,19 @@ export class UsersComponent implements OnInit{
 
   action(user:User, action:MyTableActionsEnum) {
     switch (action) {
+      case MyTableActionsEnum.NEW_ROW:
+        this.router.navigate(['editUser', action, this.users.length+1]);
+        break;
       case MyTableActionsEnum.EDIT:
-        this.router.navigate(['editUser', user.id]);
+        this.router.navigate(['editUser', action, user.id]);
         break;
       case MyTableActionsEnum.DELETE:
         this.userService.deleteUser(user).subscribe(() => {
           this.userService.getUsers().subscribe(users => this.users = users.filter(item => !item.isAdmin));
         });
+        break;
+      case MyTableActionsEnum.VIEW_RES:
+        this.router.navigate(['reservations', user.id]);
         break;
       default:
         break;

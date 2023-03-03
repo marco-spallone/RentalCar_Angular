@@ -10,10 +10,10 @@ import {ReservationFormComponent} from "./reservationform/reservation-form.compo
 const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'cars', component: CarsComponent },
-  { path: 'editUser/:id', component: UserFormComponent },
-  { path: 'editCar/:id', component: CarFormComponent },
+  { path: 'editUser/:action/:id', component: UserFormComponent },
+  { path: 'editCar/:action/:id', component: CarFormComponent },
   { path: 'reservations/:id', component: ReservationsComponent },
-  { path: 'editReservation/:id', component: ReservationFormComponent }
+  { path: 'editReservation/:action/:userId/:id', component: ReservationFormComponent }
 ];
 
 @NgModule({

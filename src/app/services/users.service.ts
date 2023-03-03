@@ -23,6 +23,10 @@ export class UsersService {
     return this.http.get<User>(url);
   }
 
+  addUser(user:User): Observable<User>{
+    return this.http.post<User>(this.usersUrl, user, this.httpOptions);
+  }
+
   updateUser(user:User): Observable<any>{
     return this.http.put(this.usersUrl, user, this.httpOptions);
   }
