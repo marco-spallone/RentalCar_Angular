@@ -34,6 +34,9 @@ export class ReservationsComponent implements OnInit{
       case MyTableActionsEnum.NEW_ROW:
         this.router.navigate(['addReservation', action, this.userId]);
         break;
+      case MyTableActionsEnum.EDIT:
+        this.router.navigate(['editReservation', action, this.userId, entity.id]);
+        break;
       default:
         break;
     }

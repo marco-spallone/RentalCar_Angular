@@ -15,6 +15,7 @@ export class ReservationFormComponent implements OnInit {
   action!: MyTableActionsEnum;
   userId!:number;
   valid:boolean=true;
+  editable:boolean=true;
 
 
   constructor(private route: ActivatedRoute, private router:Router, private reservationsService: ReservationsService) {
@@ -27,7 +28,10 @@ export class ReservationFormComponent implements OnInit {
       this.userId=parseInt(params['userId']);
     })
     if (this.action === MyTableActionsEnum.EDIT) {
-      this.reservationsService.getReservationById(this.reservationId).subscribe(res => this.reservation = res);
+      this.reservationsService.getReservationById(this.reservationId).subscribe(res => {
+        this.reservation = res;
+        this.checkEditable();
+      });
     } else {
       this.reservation = {
         id:null,
@@ -38,6 +42,16 @@ export class ReservationFormComponent implements OnInit {
         id_auto: 0
       }
     }
+  }
+
+  checkEditable(){
+    let date2 = new Date(this.reservation.data_fine);
+    let date1 = new Date(this.reservation.data_inizio);
+    var diff = Math.abs(date2.getTime() - date1.getTime());
+    var days = Math.ceil(diff / (1000 * 3600 * 24));
+    if(days<2){
+      this.editable=false;
+    } else this.editable=true;
   }
 
   post(reservation: Reservation) {
@@ -51,6 +65,10 @@ export class ReservationFormComponent implements OnInit {
         this.valid = false;
       }
     }
+  }
+
+  back(){
+    this.router.navigate(['reservations', this.userId]);
   }
 
 
