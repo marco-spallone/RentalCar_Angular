@@ -98,14 +98,16 @@ export class MyTableConfig {
   actions:MyTableAction[];
   pagination:MyPagination;
   order:MyOrder;
+  topAction:MyTableAction[];
 
 
-  constructor(headers: MyHeaders[], search:MySearch, actions:MyTableAction[], pagination:MyPagination, order:MyOrder) {
+  constructor(headers: MyHeaders[], search:MySearch, actions:MyTableAction[], pagination:MyPagination, order:MyOrder, topAction:MyTableAction[]) {
     this.headers = headers;
     this.search=search;
     this.actions=actions;
     this.pagination=pagination;
     this.order=order;
+    this.topAction=topAction;
   }
 }
 

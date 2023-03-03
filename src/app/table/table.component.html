@@ -7,11 +7,13 @@
 <input #searchValue type="text" class="form-control" id="search" name="search" placeholder="Cerca..."
        (keyup)="applyFilter(searchFor.value, searchValue.value)"/>
 <label class="mt-3" for="pagination"><strong>Elementi per pagina:</strong></label>
-<select class="mb-3 form-select" name="pagination" id="pagination" [(ngModel)]="tableConfig.pagination.itemPerPage" (ngModelChange)="onItemPerPageChange()">
+<select class="mb-4 form-select" name="pagination" id="pagination" [(ngModel)]="tableConfig.pagination.itemPerPage" (ngModelChange)="onItemPerPageChange()">
   <option *ngFor="let i of tableConfig.pagination.itemPerPageOptions">{{i}}</option>
 </select>
 
-<table *ngIf="filtered!=null" class="mt-5 table table-striped table-bordered">
+<app-button *ngFor="let topAct of tableConfig.topAction" class="mt-3" [buttonConfig]="topAct.buttonStyle" (click)="getEvent(null, topAct.actionEnum)"></app-button>
+
+<table *ngIf="filtered!=null" class="mt-2 table table-striped table-bordered">
   <thead>
   <th *ngFor="let h of tableConfig.headers" class="text-center" (click)="sort(h.key)">{{h.label}}</th>
   <th *ngFor="let addHeaders of tableConfig.actions" class="text-center">{{addHeaders.actionEnum}}</th>

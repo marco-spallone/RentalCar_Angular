@@ -7,7 +7,12 @@ import {
   MyTableActionsEnum,
   MyTableConfig
 } from "../table/table.component";
-import {deleteButtonConfig, editButtonConfig, viewResButtonConfig} from "../button/config/button-config";
+import {
+  addButtonConfig,
+  deleteButtonConfig,
+  editButtonConfig,
+  viewResButtonConfig
+} from "../button/config/button-config";
 
 export const usersTableConfig: MyTableConfig = {
   headers: [
@@ -22,6 +27,9 @@ export const usersTableConfig: MyTableConfig = {
   ],
   pagination: new MyPagination(20, [10, 20, 50]),
   order: new MyOrder('name', 'desc'),
+  topAction:[
+    new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
+  ]
 }
 
 export const carsTableConfig: MyTableConfig = {
@@ -39,6 +47,9 @@ export const carsTableConfig: MyTableConfig = {
   ],
   pagination: new MyPagination(20, [10, 20, 50]),
   order: new MyOrder('marca', 'desc'),
+  topAction:[
+    new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
+  ]
 }
 
 export const reservationsTableConfig: MyTableConfig = {
@@ -54,5 +65,8 @@ export const reservationsTableConfig: MyTableConfig = {
     new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
   ],
   pagination: new MyPagination(10, [3, 5, 10]),
-  order: new MyOrder('id_auto', 'desc')
+  order: new MyOrder('id_auto', 'desc'),
+  topAction:[
+    new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
+  ]
 }
