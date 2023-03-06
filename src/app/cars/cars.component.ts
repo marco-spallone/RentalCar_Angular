@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {carsTableConfig} from "../config/table-config";
+import {carsTableConfigForAdmin, carsTableConfigForCustomer} from "../config/table-config";
 import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {CarsService} from "../services/cars.service";
 import {Router} from "@angular/router";
@@ -13,14 +13,17 @@ import {Car} from "../interfaces/car";
 export class CarsComponent implements OnInit{
   tableConfig!: MyTableConfig;
   cars!: Car[];
-
+  isAdmin!:string | null;
 
   constructor(private router: Router, private carService:CarsService) {
   }
 
   ngOnInit() {
+    this.isAdmin=localStorage.getItem('user');
     this.carService.getCars().subscribe(cars => {this.cars = cars; console.log(this.cars)});
-    this.tableConfig=carsTableConfig;
+    if(this.isAdmin==='true'){
+      this.tableConfig=carsTableConfigForAdmin;
+    } else this.tableConfig=carsTableConfigForCustomer;
   }
 
   action(car:Car, action:MyTableActionsEnum){

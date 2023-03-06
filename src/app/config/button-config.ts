@@ -30,3 +30,13 @@ export const nextButtonConfig: MyButtonConfig = {
   text: '>',
   cssClass: 'mt-3 btn btn-outline-warning'
 }
+export const approveReservation: MyButtonConfig = {
+  icon: '',
+  text: 'Approva',
+  cssClass: 'mt-3 btn btn-outline-success'
+}
+export const declineReservation: MyButtonConfig = {
+  icon: '',
+  text: 'Declina',
+  cssClass: 'mt-3 btn btn-outline-danger'
+}

@@ -8,7 +8,7 @@ import {
   MyTableConfig
 } from "../table/table.component";
 import {
-  addButtonConfig,
+  addButtonConfig, approveReservation, declineReservation,
   deleteButtonConfig,
   editButtonConfig,
   viewResButtonConfig
@@ -32,7 +32,7 @@ export const usersTableConfig: MyTableConfig = {
   ]
 }
 
-export const carsTableConfig: MyTableConfig = {
+export const carsTableConfigForAdmin: MyTableConfig = {
   headers: [
     new MyHeaders('Marca', 'marca'),
     new MyHeaders('Modello', 'modello'),
@@ -52,7 +52,39 @@ export const carsTableConfig: MyTableConfig = {
   ]
 }
 
-export const reservationsTableConfig: MyTableConfig = {
+export const carsTableConfigForCustomer: MyTableConfig = {
+  headers: [
+    new MyHeaders('Marca', 'marca'),
+    new MyHeaders('Modello', 'modello'),
+    new MyHeaders('Anno', 'anno'),
+    new MyHeaders('Prezzo', 'prezzo'),
+    new MyHeaders('Targa', 'targa'),
+  ],
+  search: new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
+  actions: [],
+  pagination: new MyPagination(20, [10, 20, 50]),
+  order: new MyOrder('marca', 'desc'),
+  topAction:[]
+}
+
+export const reservationsTableConfigForAdmin: MyTableConfig = {
+  headers: [
+    new MyHeaders('Data Inizio', 'data_inizio'),
+    new MyHeaders('Data Fine', 'data_fine'),
+    new MyHeaders('Confermata', 'confermata'),
+    new MyHeaders('Auto', 'id_auto')
+  ],
+  search: new MySearch(['data_inizio', 'data_fine', 'id_auto']),
+  actions: [
+    new MyTableAction(MyTableActionsEnum.APPROVE, approveReservation),
+    new MyTableAction(MyTableActionsEnum.DECLINE, declineReservation)
+  ],
+  pagination: new MyPagination(10, [3, 5, 10]),
+  order: new MyOrder('id_auto', 'desc'),
+  topAction:[]
+}
+
+export const reservationsTableConfigForCustomer: MyTableConfig = {
   headers: [
     new MyHeaders('Data Inizio', 'data_inizio'),
     new MyHeaders('Data Fine', 'data_fine'),

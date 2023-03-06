@@ -14,8 +14,8 @@ export const USERS: User[] = [
     "name": "Agnese",
     "surname": "Haythornthwaite",
     "isAdmin": false,
-    "username": "ahaythornthwaite0",
-    "password": "7l9tl2t"
+    "username": "aaa",
+    "password": "aaa"
   }, {
     "id": 2,
     "name": "Amalie",

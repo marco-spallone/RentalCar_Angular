@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Reservation} from "../interfaces/reservation";
 import {ReservationsService} from "../services/reservations.service";
 import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
-import {reservationsTableConfig} from "../config/table-config";
+import {reservationsTableConfigForAdmin, reservationsTableConfigForCustomer} from "../config/table-config";
 
 @Component({
   selector: 'app-reservations',
@@ -14,12 +14,16 @@ export class ReservationsComponent implements OnInit{
   tableConfig!:MyTableConfig;
   userId!:number;
   reservations!:Reservation[];
+  isAdmin!:string | null;
 
   constructor(private route:ActivatedRoute, private router:Router, private reservationsService: ReservationsService) {
   }
 
   ngOnInit() {
-    this.tableConfig=reservationsTableConfig;
+    this.isAdmin=localStorage.getItem('user');
+    if(this.isAdmin==='true'){
+      this.tableConfig=reservationsTableConfigForAdmin;
+    } else this.tableConfig=reservationsTableConfigForCustomer;
     this.route.params.subscribe(params => {
       this.userId = Number.parseInt(params['id']);
     })
@@ -53,6 +57,12 @@ export class ReservationsComponent implements OnInit{
             this.reservationsService.getReservations().subscribe(res => this.reservations = res.filter(item => item.id_utente === this.userId));
           });
         } else alert('IMPOSSIBILE CANCELLARE LA PRENOTAZIONE! MANCANO MENO DI 2 GIORNI ALLA DATA DI INIZIO.');
+        break;
+      case MyTableActionsEnum.APPROVE:
+        entity.confermata=true;
+        break;
+      case MyTableActionsEnum.DECLINE:
+        entity.confermata=false;
         break;
       default:
         break;

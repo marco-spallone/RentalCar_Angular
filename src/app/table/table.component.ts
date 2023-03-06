@@ -20,6 +20,7 @@ export class TableComponent implements OnInit, OnChanges {
   pageButtonConfig!:MyButtonConfig;
   prevButtonConfig = prevButtonConfig;
   nextButtonConfig = nextButtonConfig;
+  isAdmin:boolean=Boolean(localStorage.getItem('user'));
 
   constructor() {
   }
@@ -135,7 +136,9 @@ export enum MyTableActionsEnum{
   NEW_ROW = 'Aggiungi',
   EDIT = 'Modifica',
   VIEW_RES = 'Visualizza',
-  DELETE = 'Elimina'
+  DELETE = 'Elimina',
+  APPROVE='Approva',
+  DECLINE='Declina'
 }
 
 export class MyTableAction{
