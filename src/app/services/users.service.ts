@@ -35,4 +35,22 @@ export class UsersService {
     const url = `${this.usersUrl}/${user.id}`;
     return this.http.delete<User>(url, this.httpOptions);
   }
+
+  login(username:string, password:string): boolean{
+    this.getUsers().subscribe(users => {
+      users.forEach(user => {
+        if(user.username===username && user.password===password){
+          localStorage.setItem('user', String(user.isAdmin));
+          if(user.isAdmin){
+            this.router.navigate(['users']);
+          } else {
+            this.router.navigate(['reservations', user.id]);
+          }
+          return true;
+        }
+        else return false;
+      })
+    });
+    return false;
+  }
 }

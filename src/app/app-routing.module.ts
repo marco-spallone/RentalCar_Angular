@@ -6,8 +6,10 @@ import { UserFormComponent } from "./userform/userForm.component";
 import {CarFormComponent} from "./carform/car-form.component";
 import {ReservationsComponent} from "./reservations/reservations.component";
 import {ReservationFormComponent} from "./reservationform/reservation-form.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent },
   { path: 'cars', component: CarsComponent },
   { path: 'addUser/:action', component: UserFormComponent },

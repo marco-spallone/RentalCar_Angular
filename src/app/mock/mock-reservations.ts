@@ -9,7 +9,7 @@ export const RESERVATIONS: Reservation[] = [{
   "id_auto": 46
 }, {
   "id": 2,
-  "data_inizio": "2023-03-07",
+  "data_inizio": "2023-03-15",
   "data_fine": "2023-03-19",
   "confermata": true,
   "id_utente": 55,

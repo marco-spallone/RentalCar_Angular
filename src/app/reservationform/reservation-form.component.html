@@ -17,6 +17,10 @@
           Data di fine obbligatoria
         </div>
       </div>
+      <label for="selectCar">Seleziona auto:</label>
+      <select name="selectCar" id="selectCar" class="form-select" [(ngModel)]="reservation.id_auto">
+        <option *ngFor="let c of cars" [ngValue]="c.id">{{c.marca}} {{c.modello}}</option>
+      </select>
       <button type="button" class="mt-3 btn btn-success" (click)="post(reservation)">Conferma</button>
     </div>
   </div>
@@ -30,3 +34,5 @@
     </div>
   </div>
 </div>
+
+

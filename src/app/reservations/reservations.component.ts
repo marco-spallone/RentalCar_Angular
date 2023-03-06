@@ -29,6 +29,16 @@ export class ReservationsComponent implements OnInit{
     });
   }
 
+  checkDeletable(reservation:Reservation): boolean{
+    let date2 = new Date();
+    let date1 = new Date(reservation.data_inizio);
+    let diff = Math.abs(date2.getTime() - date1.getTime());
+    let days = Math.ceil(diff / (1000 * 3600 * 24));
+    if (days < 2) {
+      return false;
+    } else return true;
+  }
+
   action(entity:Reservation, action:MyTableActionsEnum){
     switch (action){
       case MyTableActionsEnum.NEW_ROW:
@@ -36,6 +46,13 @@ export class ReservationsComponent implements OnInit{
         break;
       case MyTableActionsEnum.EDIT:
         this.router.navigate(['editReservation', action, this.userId, entity.id]);
+        break;
+      case MyTableActionsEnum.DELETE:
+        if(this.checkDeletable(entity)){
+          this.reservationsService.deleteReservation(entity).subscribe(() => {
+            this.reservationsService.getReservations().subscribe(res => this.reservations = res.filter(item => item.id_utente === this.userId));
+          });
+        } else alert('IMPOSSIBILE CANCELLARE LA PRENOTAZIONE! MANCANO MENO DI 2 GIORNI ALLA DATA DI INIZIO.');
         break;
       default:
         break;

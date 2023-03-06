@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { ReservationFormComponent } from './reservationform/reservation-form.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ReservationFormComponent } from './reservationform/reservation-form.com
     PaginationPipe,
     SortPipe,
     ReservationsComponent,
-    ReservationFormComponent
+    ReservationFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

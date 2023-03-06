@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {Car} from "../interfaces/car";
 import {Router} from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {User} from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
