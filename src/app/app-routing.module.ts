@@ -13,12 +13,13 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'cars', component: CarsComponent },
   { path: 'addUser/:action', component: UserFormComponent },
-  { path: 'editUser/:customerId/:action', component: UserFormComponent },
+  { path: 'editUser/:userId/:action', component: UserFormComponent },
   { path: 'addCar/:action', component: CarFormComponent },
   { path: 'editCar/:action/:carId', component: CarFormComponent },
   { path: 'reservations/:id', component: ReservationsComponent },
   { path: 'addReservation/:action/:userId', component: ReservationFormComponent },
-  { path: 'editReservation/:action/:userId/:resId', component: ReservationFormComponent }
+  { path: 'editReservation/:action/:userId/:resId', component: ReservationFormComponent },
+  { path: 'userProfile/:userId/:action', component: UserFormComponent }
 ];
 
 @NgModule({

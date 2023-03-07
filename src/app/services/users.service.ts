@@ -38,20 +38,26 @@ export class UsersService {
     return this.http.delete<User>(url, this.httpOptions);
   }
 
-  login(username: string, password: string): boolean {
+  login(username: string, password: string){
+    let logged!:boolean;
     this.getUsers().subscribe(users => {
-      users.forEach(user => {
+      users.every(user => {
         if (user.username === username && user.password === password) {
           localStorage.setItem('user', String(user.isAdmin));
+          localStorage.setItem('userId', String(user.id));
           if (user.isAdmin) {
             this.router.navigate(['users']);
           } else {
             this.router.navigate(['reservations', user.id]);
           }
-          return true;
-        } else return false;
+          logged=true;
+        } else {
+          logged=false;
+        }
       })
+      if(!logged){
+        alert('LOGIN FALLITO');
+      }
     });
-    return false;
   }
 }

@@ -6,9 +6,6 @@
       <label for="password">Password</label><input #password id="password" name="password" type="password" class="form-control"
                                                    required/>
       <button type="button" class="mt-3 btn btn-success" (click)="login(username.value, password.value)">LOGIN</button>
-      <div *ngIf="!logged" class="mt-2 alert alert-danger">
-        <p>Accesso non autorizzato!</p>
-      </div>
     </div>
   </div>
 </div>

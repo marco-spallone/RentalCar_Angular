@@ -7,18 +7,18 @@
   <div class="navbar-collapse collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" >Home</a>
+        <a class="nav-link" routerLink="{{url1}}">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/cars">Parco Auto</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Profilo utente</a>
+        <a class="nav-link" routerLink="/userProfile/{{userId}}/{{actionEdit}}">Profilo utente</a>
       </li>
     </ul>
   </div>
   <div class="nav navbar-nav navbar-right">
-    <a href="" class="navbar-brand"><button type="button" class="btn btn-danger"><i class="bi bi-box-arrow-right"></i> Esci</button></a>
+    <a href="" class="navbar-brand" routerLink="/login"><button type="button" class="btn btn-danger"><i class="bi bi-box-arrow-right"></i> Esci</button></a>
   </div>
 </nav>
 

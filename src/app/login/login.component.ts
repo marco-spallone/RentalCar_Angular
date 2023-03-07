@@ -8,13 +8,12 @@ import {UsersService} from "../services/users.service";
 })
 export class LoginComponent {
 
-  logged:boolean = true;
 
   constructor(private usersService:UsersService) {
   }
 
   login(username:string, password:string){
-    this.logged=this.usersService.login(username, password);
+    this.usersService.login(username, password);
   }
 
 }

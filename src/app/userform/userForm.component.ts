@@ -21,7 +21,7 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.action = params['action'];
-      this.customerId = Number.parseInt(params['customerId']);
+      this.customerId = Number.parseInt(params['userId']);
     })
     if(this.action===MyTableActionsEnum.EDIT){
       this.userService.getUserById(this.customerId).subscribe(user => this.user = user);
