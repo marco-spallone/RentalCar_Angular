@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {prevButtonConfig, nextButtonConfig} from "../config/button-config";
 import {MyButtonConfig} from "../button/button.component";
+import {reservationsTableConfigForAdmin} from "../config/table-config";
+import {Reservation} from "../interfaces/reservation";
 
 @Component({
   selector: 'app-table',
@@ -11,34 +13,33 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() tableConfig!: MyTableConfig;
   @Input() data!: any[];
   @Output() newItemEvent = new EventEmitter<any>();
-  filtered!:any[];
+  filtered!: any[];
   order!: string;
   column!: string;
   page: number = 1;
-  maxPages!:number;
-  iterableMaxPages!:Array<any>;
-  pageButtonConfig!:MyButtonConfig;
+  maxPages!: number;
+  iterableMaxPages!: Array<any>;
+  pageButtonConfig!: MyButtonConfig;
   prevButtonConfig = prevButtonConfig;
   nextButtonConfig = nextButtonConfig;
-  isAdmin:boolean=Boolean(localStorage.getItem('user'));
 
   constructor() {
   }
+
   ngOnInit(): void {
-    this.filtered=this.data;
+    this.filtered = this.data;
     this.order = this.tableConfig.order.orderType;
     this.sort(this.tableConfig.order.defaultColumn);
-
   }
 
   ngOnChanges() {
-    this.filtered=this.data;
+    this.filtered = this.data;
     this.onItemPerPageChange();
   }
 
   sort(column: string) {
     this.column = column;
-    this.page=1;
+    this.page = 1;
     if (this.order === 'desc') {
       this.order = 'asc';
     } else {
@@ -46,39 +47,39 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
-  onItemPerPageChange(){
-    if(this.filtered!=null){
-      this.maxPages=this.filtered.length/this.tableConfig.pagination.itemPerPage;
-      if(this.maxPages%1===0){
-        this.iterableMaxPages = new Array(Math.floor(this.maxPages)).fill(this.maxPages).map((x,i)=>i);
+  onItemPerPageChange() {
+    if (this.filtered != null) {
+      this.maxPages = this.filtered.length / this.tableConfig.pagination.itemPerPage;
+      if (this.maxPages % 1 === 0) {
+        this.iterableMaxPages = new Array(Math.floor(this.maxPages)).fill(this.maxPages).map((x, i) => i);
       } else {
-        this.iterableMaxPages = new Array(Math.floor(this.maxPages)+1).fill(this.maxPages).map((x,i)=>i);
+        this.iterableMaxPages = new Array(Math.floor(this.maxPages) + 1).fill(this.maxPages).map((x, i) => i);
       }
-      this.page=1;
+      this.page = 1;
     }
   }
 
-  setPageButton(page:number):MyButtonConfig{
-    if(this.page===page+1){
-      this.pageButtonConfig = new MyButtonConfig('', (page+1).toString(), 'active mt-3 btn btn-outline-warning');
+  setPageButton(page: number): MyButtonConfig {
+    if (this.page === page + 1) {
+      this.pageButtonConfig = new MyButtonConfig('', (page + 1).toString(), 'active mt-3 btn btn-outline-warning');
     } else {
-      this.pageButtonConfig = new MyButtonConfig('', (page+1).toString(), 'mt-3 btn btn-outline-warning');
+      this.pageButtonConfig = new MyButtonConfig('', (page + 1).toString(), 'mt-3 btn btn-outline-warning');
     }
     return this.pageButtonConfig;
   }
 
-  setPage(page:number){
-    this.page=page+1;
+  setPage(page: number) {
+    this.page = page + 1;
   }
 
-  prev(){
-    if(this.page>1){
+  prev() {
+    if (this.page > 1) {
       this.page--;
     }
   }
 
-  next(){
-    if(this.page<this.maxPages){
+  next() {
+    if (this.page < this.maxPages) {
       this.page++;
     }
   }
@@ -88,8 +89,8 @@ export class TableComponent implements OnInit, OnChanges {
     this.onItemPerPageChange();
   }
 
-  getEvent(entity: any, action:MyTableActionsEnum) {
-    this.newItemEvent.emit({entity:entity, action: action});
+  getEvent(entity: any, action: MyTableActionsEnum) {
+    this.newItemEvent.emit({entity: entity, action: action});
   }
 
 }
@@ -98,19 +99,31 @@ export class TableComponent implements OnInit, OnChanges {
 export class MyTableConfig {
   headers: MyHeaders[];
   search: MySearch;
-  actions:MyTableAction[];
-  pagination:MyPagination;
-  order:MyOrder;
-  topAction:MyTableAction[];
+  actions: MyTableAction[];
+  pagination: MyPagination;
+  order: MyOrder;
+  topAction: MyTableAction[];
+  show:Show;
 
 
-  constructor(headers: MyHeaders[], search:MySearch, actions:MyTableAction[], pagination:MyPagination, order:MyOrder, topAction:MyTableAction[]) {
+  constructor(headers: MyHeaders[], search: MySearch, actions: MyTableAction[], pagination: MyPagination, order: MyOrder, topAction: MyTableAction[],
+              show:Show) {
     this.headers = headers;
-    this.search=search;
-    this.actions=actions;
-    this.pagination=pagination;
-    this.order=order;
-    this.topAction=topAction;
+    this.search = search;
+    this.actions = actions;
+    this.pagination = pagination;
+    this.order = order;
+    this.topAction = topAction;
+    this.show=show;
+  }
+}
+
+export class Show {
+  show(entity:any):boolean{
+    if(entity.confermata!=null && entity.confermata==='Sì'){
+      return false;
+    }
+    else return true;
   }
 }
 
@@ -124,7 +137,7 @@ export class MyHeaders {
   }
 }
 
-export class MySearch{
+export class MySearch {
   columns: string[];
 
   constructor(columns: string[]) {
@@ -132,18 +145,18 @@ export class MySearch{
   }
 }
 
-export enum MyTableActionsEnum{
+export enum MyTableActionsEnum {
   NEW_ROW = 'Aggiungi',
   EDIT = 'Modifica',
   VIEW_RES = 'Visualizza',
   DELETE = 'Elimina',
-  APPROVE='Approva',
-  DECLINE='Declina'
+  APPROVE = 'Approva',
+  DECLINE = 'Declina'
 }
 
-export class MyTableAction{
-  actionEnum:MyTableActionsEnum;
-  buttonStyle:MyButtonConfig;
+export class MyTableAction {
+  actionEnum: MyTableActionsEnum;
+  buttonStyle: MyButtonConfig;
 
 
   constructor(actionEnum: MyTableActionsEnum, buttonStyle: MyButtonConfig) {

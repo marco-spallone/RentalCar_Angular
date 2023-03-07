@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Reservation} from "../interfaces/reservation";
 
 @Component({
   selector: 'app-button',
@@ -19,5 +20,8 @@ export class MyButtonConfig {
     this.icon = icon;
     this.text = text;
     this.cssClass = cssClass;
+  }
+
+  show(reservation:Reservation){
   }
 }

@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-md-8 col-sm-8">
-      <app-table [tableConfig]="tableConfig" [data]="cars" (newItemEvent)="action($event.entity, $event.action)"></app-table>
+      <app-table [tableConfig]="tableConfig" [data]="cars"
+                 (newItemEvent)="action($event.entity, $event.action)"></app-table>
     </div>
   </div>
 </div>

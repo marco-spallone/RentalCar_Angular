@@ -5,7 +5,7 @@ import {
   MySearch,
   MyTableAction,
   MyTableActionsEnum,
-  MyTableConfig
+  MyTableConfig, Show
 } from "../table/table.component";
 import {
   addButtonConfig, approveReservation, declineReservation,
@@ -29,7 +29,8 @@ export const usersTableConfig: MyTableConfig = {
   order: new MyOrder('name', 'desc'),
   topAction:[
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
-  ]
+  ],
+  show:new Show()
 }
 
 export const carsTableConfigForAdmin: MyTableConfig = {
@@ -49,7 +50,8 @@ export const carsTableConfigForAdmin: MyTableConfig = {
   order: new MyOrder('marca', 'desc'),
   topAction:[
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
-  ]
+  ],
+  show:new Show()
 }
 
 export const carsTableConfigForCustomer: MyTableConfig = {
@@ -64,7 +66,8 @@ export const carsTableConfigForCustomer: MyTableConfig = {
   actions: [],
   pagination: new MyPagination(20, [10, 20, 50]),
   order: new MyOrder('marca', 'desc'),
-  topAction:[]
+  topAction:[],
+  show:new Show()
 }
 
 export const reservationsTableConfigForAdmin: MyTableConfig = {
@@ -81,7 +84,8 @@ export const reservationsTableConfigForAdmin: MyTableConfig = {
   ],
   pagination: new MyPagination(10, [3, 5, 10]),
   order: new MyOrder('id_auto', 'desc'),
-  topAction:[]
+  topAction:[],
+  show:new Show()
 }
 
 export const reservationsTableConfigForCustomer: MyTableConfig = {
@@ -100,5 +104,6 @@ export const reservationsTableConfigForCustomer: MyTableConfig = {
   order: new MyOrder('id_auto', 'desc'),
   topAction:[
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
-  ]
+  ],
+  show:new Show()
 }

@@ -10,20 +10,20 @@ import {User} from "../interfaces/user";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit{
+export class UsersComponent implements OnInit {
   tableConfig!: MyTableConfig;
-  users!:User[];
+  users!: User[];
 
 
   constructor(private router: Router, private userService: UsersService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.userService.getUsers().subscribe(users => this.users = users.filter(item => !item.isAdmin));
-    this.tableConfig=usersTableConfig;
+    this.tableConfig = usersTableConfig;
   }
 
-  action(user:User, action:MyTableActionsEnum) {
+  action(user: User, action: MyTableActionsEnum) {
     switch (action) {
       case MyTableActionsEnum.NEW_ROW:
         this.router.navigate(['addUser', action]);

@@ -10,23 +10,26 @@ import {Car} from "../interfaces/car";
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.css']
 })
-export class CarsComponent implements OnInit{
+export class CarsComponent implements OnInit {
   tableConfig!: MyTableConfig;
   cars!: Car[];
-  isAdmin!:string | null;
+  isAdmin!: string | null;
 
-  constructor(private router: Router, private carService:CarsService) {
+  constructor(private router: Router, private carService: CarsService) {
   }
 
   ngOnInit() {
-    this.isAdmin=localStorage.getItem('user');
-    this.carService.getCars().subscribe(cars => {this.cars = cars; console.log(this.cars)});
-    if(this.isAdmin==='true'){
-      this.tableConfig=carsTableConfigForAdmin;
-    } else this.tableConfig=carsTableConfigForCustomer;
+    this.isAdmin = localStorage.getItem('user');
+    this.carService.getCars().subscribe(cars => {
+      this.cars = cars;
+      console.log(this.cars)
+    });
+    if (this.isAdmin === 'true') {
+      this.tableConfig = carsTableConfigForAdmin;
+    } else this.tableConfig = carsTableConfigForCustomer;
   }
 
-  action(car:Car, action:MyTableActionsEnum){
+  action(car: Car, action: MyTableActionsEnum) {
     switch (action) {
       case MyTableActionsEnum.NEW_ROW:
         this.router.navigate(['addCar', action]);

@@ -2,7 +2,8 @@
   <div class="row">
     <div class="mx-auto mt-3 col-sm-6 col-md-6">
       <h2>Modifica dati</h2>
-      <label for="marca">Marca:</label><input #marca=ngModel name="marca" id="marca" type="text" class="form-control" required
+      <label for="marca">Marca:</label><input #marca=ngModel name="marca" id="marca" type="text" class="form-control"
+                                              required
                                               [(ngModel)]="car.marca"/>
       <div *ngIf="marca.invalid && (marca.dirty || marca.touched)"
            class="alert">
@@ -10,7 +11,8 @@
           Marca obbligatoria. La marca non può iniziare con uno spazio.
         </div>
       </div>
-      <label for="modello">Modello:</label><input #modello=ngModel name="modello" id="modello" type="text" class="form-control" required
+      <label for="modello">Modello:</label><input #modello=ngModel name="modello" id="modello" type="text"
+                                                  class="form-control" required
                                                   [(ngModel)]="car.modello"/>
       <div *ngIf="modello.invalid && (modello.dirty || modello.touched)"
            class="alert">
@@ -18,7 +20,8 @@
           Modello obbligatorio. Il modello non può iniziare con uno spazio.
         </div>
       </div>
-      <label for="anno">Anno:</label><input #anno=ngModel name="anno" id="anno" type="number" class="form-control" required min="1900"
+      <label for="anno">Anno:</label><input #anno=ngModel name="anno" id="anno" type="number" class="form-control"
+                                            required min="1900"
                                             max="2023" [(ngModel)]="car.anno"/>
       <div *ngIf="anno.invalid && (anno.dirty || anno.touched)"
            class="alert">
@@ -29,7 +32,8 @@
           Anno non valido
         </div>
       </div>
-      <label for="prezzo">Prezzo:</label><input #prezzo=ngModel name="prezzo" id="prezzo" type="text" class="form-control" required
+      <label for="prezzo">Prezzo:</label><input #prezzo=ngModel name="prezzo" id="prezzo" type="text"
+                                                class="form-control" required
                                                 [(ngModel)]="car.prezzo"/>
       <div *ngIf="prezzo.invalid && (prezzo.dirty || prezzo.touched)"
            class="alert">

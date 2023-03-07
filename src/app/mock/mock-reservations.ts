@@ -487,7 +487,7 @@ export const RESERVATIONS: Reservation[] = [{
   "id": 70,
   "data_inizio": "2023-03-14",
   "data_fine": "2023-04-02",
-  "confermata": true,
+  "confermata": false,
   "id_utente": 30,
   "id_auto": 21
 }, {

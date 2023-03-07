@@ -17,11 +17,11 @@ export class ReservationFormComponent implements OnInit {
   action!: MyTableActionsEnum;
   userId!: number;
   editable: boolean = true;
-  reservations!:Reservation[];
-  cars!:Car[];
+  reservations!: Reservation[];
+  cars!: Car[];
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private reservationsService: ReservationsService, private carsService:CarsService) {
+  constructor(private route: ActivatedRoute, private router: Router, private reservationsService: ReservationsService, private carsService: CarsService) {
   }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class ReservationFormComponent implements OnInit {
         id_auto: 0
       }
     }
-    this.carsService.getCars().subscribe(cars => this.cars=cars);
+    this.carsService.getCars().subscribe(cars => this.cars = cars);
   }
 
   checkEditable() {
@@ -59,7 +59,7 @@ export class ReservationFormComponent implements OnInit {
   }
 
   post(reservation: Reservation) {
-    if (reservation.data_inizio != null && reservation.data_fine != null && reservation.id_auto!=null) {
+    if (reservation.data_inizio != null && reservation.data_fine != null && reservation.id_auto != null) {
       if (this.action === MyTableActionsEnum.EDIT) {
         this.reservationsService.updateReservation(reservation).subscribe(() => this.router.navigate(['reservations', this.userId]));
       } else if (this.action === MyTableActionsEnum.NEW_ROW) {

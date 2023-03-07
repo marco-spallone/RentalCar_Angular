@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { User } from '../interfaces/user';
+import {Injectable} from '@angular/core';
+import {InMemoryDbService} from 'angular-in-memory-web-api';
+import {User} from '../interfaces/user';
 import {USERS} from "../mock/mock-users";
 import {CARS} from "../mock/mock-cars";
 import {Car} from "../interfaces/car";
@@ -12,9 +12,9 @@ import {Reservation} from "../interfaces/reservation";
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const USERS_DB:User[] =  USERS;
-    const CARS_DB:Car[] = CARS;
-    const RESERVATIONS_DB:Reservation[] = RESERVATIONS;
+    const USERS_DB: User[] = USERS;
+    const CARS_DB: Car[] = CARS;
+    const RESERVATIONS_DB: Reservation[] = RESERVATIONS;
     return {USERS_DB, CARS_DB, RESERVATIONS_DB};
   }
 

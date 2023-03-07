@@ -13,7 +13,6 @@ import {MyTableActionsEnum} from "../table/table.component";
 export class UserFormComponent implements OnInit {
   customerId!:number;
   user!:User;
-  users!:User[];
   valid:boolean=true;
   action!:MyTableActionsEnum;
 
