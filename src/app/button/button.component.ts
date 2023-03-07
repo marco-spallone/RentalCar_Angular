@@ -1,5 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {Reservation} from "../interfaces/reservation";
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
+import {Icon} from "@fortawesome/fontawesome-svg-core";
+
 
 @Component({
   selector: 'app-button',
@@ -12,11 +16,11 @@ export class ButtonComponent {
 
 export class MyButtonConfig {
 
-  icon: string;
+  icon: IconDefinition;
   text: string;
   cssClass: string;
 
-  constructor(icon: string, text: string, cssClass: string) {
+  constructor(icon: IconDefinition, text: string, cssClass: string) {
     this.icon = icon;
     this.text = text;
     this.cssClass = cssClass;

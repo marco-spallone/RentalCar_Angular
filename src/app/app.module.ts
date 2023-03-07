@@ -7,7 +7,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CarsComponent } from './cars/cars.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TableComponent } from './table/table.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserFormComponent } from './userform/userForm.component';
 import {FormsModule} from "@angular/forms";
 import { CarFormComponent } from './carform/car-form.component';
@@ -19,6 +18,9 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { ReservationFormComponent } from './reservationform/reservation-form.component';
 import { LoginComponent } from './login/login.component';
+import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
+
+
 
 
 @NgModule({

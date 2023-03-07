@@ -3,6 +3,7 @@ import {prevButtonConfig, nextButtonConfig} from "../config/button-config";
 import {MyButtonConfig} from "../button/button.component";
 import {reservationsTableConfigForAdmin} from "../config/table-config";
 import {Reservation} from "../interfaces/reservation";
+import {faHashtag, faHouse} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-table',
@@ -61,9 +62,9 @@ export class TableComponent implements OnInit, OnChanges {
 
   setPageButton(page: number): MyButtonConfig {
     if (this.page === page + 1) {
-      this.pageButtonConfig = new MyButtonConfig('', (page + 1).toString(), 'active mt-3 btn btn-outline-warning');
+      this.pageButtonConfig = new MyButtonConfig(faHashtag, (page + 1).toString(), 'active mt-3 btn btn-outline-warning');
     } else {
-      this.pageButtonConfig = new MyButtonConfig('', (page + 1).toString(), 'mt-3 btn btn-outline-warning');
+      this.pageButtonConfig = new MyButtonConfig(faHashtag, (page + 1).toString(), 'mt-3 btn btn-outline-warning');
     }
     return this.pageButtonConfig;
   }
