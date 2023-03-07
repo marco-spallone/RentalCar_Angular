@@ -8,12 +8,13 @@ import {MyTableActionsEnum} from "../table/table.component";
 })
 export class NavbarComponent implements OnInit{
 
+  navbarCollapsed = true;
+
   isAdmin:string|null=localStorage.getItem('user');
   userId:string|null=localStorage.getItem('userId');
   url1!:string;
   actionEdit:MyTableActionsEnum=MyTableActionsEnum.EDIT;
 
-  show:boolean=false;
 
   ngOnInit(): void {
     if(this.isAdmin==='true'){
@@ -21,10 +22,8 @@ export class NavbarComponent implements OnInit{
     } else this.url1='/reservations/'+this.userId;
   }
 
-
-
-  menu(){
-    this.show=!this.show;
+  toggle(){
+    this.navbarCollapsed = !this.navbarCollapsed;
   }
 
 }
