@@ -6,6 +6,7 @@ import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {reservationsTableConfigForAdmin, reservationsTableConfigForCustomer} from "../config/table-config";
 import {ReservationDTO} from "../dto/reservationDTO";
 import {ReservationDTOMapper} from "../mapper/reservationDTOMapper";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-reservations',
@@ -35,11 +36,9 @@ export class ReservationsComponent implements OnInit {
   }
 
   checkDeletable(reservation: Reservation): boolean {
-    let date2 = new Date();
-    let date1 = new Date(reservation.data_inizio);
-    let diff = Math.abs(date2.getTime() - date1.getTime());
-    let days = Math.ceil(diff / (1000 * 3600 * 24));
-    return days >= 2;
+    let date2 = moment();
+    let date1 = moment(reservation.data_inizio);
+    return date2.diff(date1, 'days') >= 2;
   }
 
   action(entity: ReservationDTO, action: MyTableActionsEnum) {

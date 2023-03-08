@@ -5,6 +5,7 @@ import {ReservationsService} from "../services/reservations.service";
 import {MyTableActionsEnum} from "../table/table.component";
 import {Car} from "../interfaces/car";
 import {CarsService} from "../services/cars.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-reservation-form',
@@ -49,13 +50,9 @@ export class ReservationFormComponent implements OnInit {
   }
 
   checkEditable() {
-    let date2 = new Date();
-    let date1 = new Date(this.reservation.data_inizio);
-    let diff = Math.abs(date2.getTime() - date1.getTime());
-    let days = Math.ceil(diff / (1000 * 3600 * 24));
-    if (days < 2) {
-      this.editable = false;
-    } else this.editable = true;
+    let date2 = moment();
+    let date1 = moment(this.reservation.data_inizio);
+    return date2.diff(date1, 'days')>=2 ? this.editable=true : this.editable=false;
   }
 
   post(reservation: Reservation) {
