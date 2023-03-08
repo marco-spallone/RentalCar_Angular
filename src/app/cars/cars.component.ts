@@ -22,7 +22,6 @@ export class CarsComponent implements OnInit {
     this.isAdmin = localStorage.getItem('user');
     this.carService.getCars().subscribe(cars => {
       this.cars = cars;
-      console.log(this.cars)
     });
     if (this.isAdmin === 'true') {
       this.tableConfig = carsTableConfigForAdmin;
