@@ -104,27 +104,14 @@ export class MyTableConfig {
   pagination: MyPagination;
   order: MyOrder;
   topAction: MyTableAction[];
-  show:Show;
 
-
-  constructor(headers: MyHeaders[], search: MySearch, actions: MyTableAction[], pagination: MyPagination, order: MyOrder, topAction: MyTableAction[],
-              show:Show) {
+  constructor(headers: MyHeaders[], search: MySearch, actions: MyTableAction[], pagination: MyPagination, order: MyOrder, topAction: MyTableAction[]) {
     this.headers = headers;
     this.search = search;
     this.actions = actions;
     this.pagination = pagination;
     this.order = order;
     this.topAction = topAction;
-    this.show=show;
-  }
-}
-
-export class Show {
-  show(entity:any):boolean{
-    if(entity.confermata!=null && entity.confermata==='Sì'){
-      return false;
-    }
-    else return true;
   }
 }
 

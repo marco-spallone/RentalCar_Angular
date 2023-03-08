@@ -29,22 +29,22 @@ export class ReservationFormComponent implements OnInit {
       this.action = params['action'];
       this.reservationId = Number.parseInt(params['resId']);
       this.userId = parseInt(params['userId']);
-    })
-    if (this.action === MyTableActionsEnum.EDIT) {
-      this.reservationsService.getReservationById(this.reservationId).subscribe(res => {
-        this.reservation = res;
-        this.checkEditable();
-      });
-    } else {
-      this.reservation = {
-        id: null,
-        data_inizio: '',
-        data_fine: '',
-        confermata: false,
-        id_utente: this.userId,
-        id_auto: 0
+      if (this.action === MyTableActionsEnum.EDIT) {
+        this.reservationsService.getReservationById(this.reservationId).subscribe(res => {
+          this.reservation = res;
+          this.checkEditable();
+        });
+      } else {
+        this.reservation = {
+          id: null,
+          data_inizio: '',
+          data_fine: '',
+          confermata: false,
+          id_utente: this.userId,
+          id_auto: 0
+        }
       }
-    }
+    })
     this.carsService.getCars().subscribe(cars => this.cars = cars);
   }
 

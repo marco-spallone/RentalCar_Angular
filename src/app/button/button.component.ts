@@ -1,8 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Reservation} from "../interfaces/reservation";
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
-import {Icon} from "@fortawesome/fontawesome-svg-core";
 
 
 @Component({
@@ -26,6 +23,7 @@ export class MyButtonConfig {
     this.cssClass = cssClass;
   }
 
-  show(reservation:Reservation){
+  show(entity:any):boolean{
+    return true;
   }
 }

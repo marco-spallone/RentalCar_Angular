@@ -12,14 +12,14 @@ export class NavbarComponent implements OnInit{
 
   isAdmin:string|null=localStorage.getItem('user');
   userId:string|null=localStorage.getItem('userId');
-  url1!:string;
+  urlHome!:string;
   actionEdit:MyTableActionsEnum=MyTableActionsEnum.EDIT;
 
 
   ngOnInit(): void {
     if(this.isAdmin==='true'){
-      this.url1='/users';
-    } else this.url1='/reservations/'+this.userId;
+      this.urlHome='/users';
+    } else this.urlHome='/reservations/'+this.userId;
   }
 
   toggle(){

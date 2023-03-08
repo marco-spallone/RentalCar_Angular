@@ -24,7 +24,7 @@
   <tr *ngFor="let d of filtered | sort:order:column | pagination:tableConfig.pagination.itemPerPage:page">
     <td *ngFor="let n of tableConfig.headers">{{d[n.key]}}</td>
     <td *ngFor="let act of tableConfig.actions">
-      <app-button *ngIf="tableConfig.show.show(d)" [buttonConfig]="act.buttonStyle" (click)="getEvent(d, act.actionEnum)"></app-button>
+      <app-button [buttonConfig]="act.buttonStyle" *ngIf="act.buttonStyle.show(d)" (click)="getEvent(d, act.actionEnum)"></app-button>
     </td>
   </tr>
   </tbody>

@@ -15,7 +15,6 @@ import {ReservationDTOMapper} from "../mapper/reservationDTOMapper";
 export class ReservationsComponent implements OnInit {
   tableConfig!: MyTableConfig;
   userId!: number;
-  reservations!: Reservation[];
   reservationsDTO!: ReservationDTO[];
   isAdmin!: string | null;
 
@@ -31,8 +30,7 @@ export class ReservationsComponent implements OnInit {
       this.userId = Number.parseInt(params['id']);
     })
     this.reservationsService.getReservations().subscribe(reservations => {
-      this.reservations = reservations.filter(item => item.id_utente === this.userId);
-      this.reservationsDTO = this.reservations.map(res => this.mapper.fromResToDTO(res));
+      this.reservationsDTO = reservations.filter(item => item.id_utente === this.userId).map(res => this.mapper.fromResToDTO(res));
     });
   }
 
@@ -41,9 +39,7 @@ export class ReservationsComponent implements OnInit {
     let date1 = new Date(reservation.data_inizio);
     let diff = Math.abs(date2.getTime() - date1.getTime());
     let days = Math.ceil(diff / (1000 * 3600 * 24));
-    if (days < 2) {
-      return false;
-    } else return true;
+    return days >= 2;
   }
 
   action(entity: ReservationDTO, action: MyTableActionsEnum) {
@@ -62,8 +58,7 @@ export class ReservationsComponent implements OnInit {
             if (this.checkDeletable(reservation)) {
               this.reservationsService.deleteReservation(reservation).subscribe(() => {
                 this.reservationsService.getReservations().subscribe(res => {
-                  this.reservations = res.filter(item => item.id_utente === this.userId);
-                  this.reservationsDTO = this.reservations.map(res => this.mapper.fromResToDTO(res));
+                  this.reservationsDTO = res.filter(item => item.id_utente === this.userId).map(res => this.mapper.fromResToDTO(res));
                 });
               });
             } else alert('IMPOSSIBILE CANCELLARE LA PRENOTAZIONE! MANCANO MENO DI 2 GIORNI ALLA DATA DI INIZIO.');
@@ -73,8 +68,8 @@ export class ReservationsComponent implements OnInit {
       case MyTableActionsEnum.APPROVE:
         if(entity.id!=null){
           this.reservationsService.getReservationById(entity.id).subscribe(res => {
-            reservation = res;
-            reservation.confermata = true;
+            res.confermata=true;
+            this.reservationsService.updateReservation(res);
             entity.confermata='Sì';
           });
         }
@@ -82,8 +77,8 @@ export class ReservationsComponent implements OnInit {
       case MyTableActionsEnum.DECLINE:
         if(entity.id!=null){
           this.reservationsService.getReservationById(entity.id).subscribe(res => {
-            reservation = res;
-            reservation.confermata = false;
+            res.confermata=false;
+            this.reservationsService.updateReservation(res);
             entity.confermata='No';
           });
         }

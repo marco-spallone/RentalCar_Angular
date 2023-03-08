@@ -41,8 +41,9 @@ export class UsersService {
   login(username: string, password: string){
     let logged!:boolean;
     this.getUsers().subscribe(users => {
-      users.every(user => {
+      users.forEach(user => {
         if (user.username === username && user.password === password) {
+          console.log('si');
           localStorage.setItem('user', String(user.isAdmin));
           localStorage.setItem('userId', String(user.id));
           if (user.isAdmin) {
@@ -51,11 +52,9 @@ export class UsersService {
             this.router.navigate(['reservations', user.id]);
           }
           logged=true;
-        } else {
-          logged=false;
         }
       })
-      if(!logged){
+      if(logged==null){
         alert('LOGIN FALLITO');
       }
     });
