@@ -37,6 +37,20 @@ export class ReservationsService {
     return this.http.put(this.reservationsUrl, reservation, this.httpOptions);
   }
 
+  approveReservationById(id:number) {
+    this.getReservationById(id).subscribe(res => {
+      res.confermata=true;
+      this.http.put(this.reservationsUrl, res, this.httpOptions);
+    });
+  }
+
+  declineReservationById(id:number) {
+    this.getReservationById(id).subscribe(res => {
+      res.confermata=false;
+      this.http.put(this.reservationsUrl, res, this.httpOptions);
+    });
+  }
+
   deleteReservation(reservation: Reservation): Observable<Reservation> {
     const url = `${this.reservationsUrl}/${reservation.id}`;
     return this.http.delete<Reservation>(url, this.httpOptions);

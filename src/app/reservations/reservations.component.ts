@@ -66,20 +66,14 @@ export class ReservationsComponent implements OnInit {
         break;
       case MyTableActionsEnum.APPROVE:
         if(entity.id!=null){
-          this.reservationsService.getReservationById(entity.id).subscribe(res => {
-            res.confermata=true;
-            this.reservationsService.updateReservation(res);
-            entity.confermata='Sì';
-          });
+          this.reservationsService.approveReservationById(entity.id);
+          entity.confermata='Sì';
         }
         break;
       case MyTableActionsEnum.DECLINE:
         if(entity.id!=null){
-          this.reservationsService.getReservationById(entity.id).subscribe(res => {
-            res.confermata=false;
-            this.reservationsService.updateReservation(res);
-            entity.confermata='No';
-          });
+          this.reservationsService.declineReservationById(entity.id);
+          entity.confermata='No';
         }
         break;
       default:
