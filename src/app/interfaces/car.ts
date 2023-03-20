@@ -1,8 +1,8 @@
 export interface Car{
   id:number | null,
-  marca:string,
-  modello:string,
-  anno:number,
-  prezzo:string,
-  targa:string,
+  brand:string,
+  model:string,
+  year:number,
+  price:string,
+  plate:string,
 }

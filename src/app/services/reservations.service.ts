@@ -11,17 +11,16 @@ import {User} from "../interfaces/user";
   providedIn: 'root'
 })
 export class ReservationsService {
-  private reservationsUrl = 'api/RESERVATIONS_DB';
-  allReservations!: Reservation[];
+  private reservationsUrl = 'http://localhost:8080/rental-car/reservations';
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private router: Router, private http: HttpClient, private carsService: CarsService) {
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   getReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(this.reservationsUrl);
+    return this.http.get<Reservation[]>(this.reservationsUrl+'/user/'+localStorage.getItem('id'));
   }
 
   getReservationById(id: number): Observable<Reservation> {
@@ -29,24 +28,20 @@ export class ReservationsService {
     return this.http.get<Reservation>(url);
   }
 
-  addReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.post<Reservation>(this.reservationsUrl, reservation, this.httpOptions);
-  }
-
   updateReservation(reservation: Reservation): Observable<any> {
-    return this.http.put(this.reservationsUrl, reservation, this.httpOptions);
+    return this.http.post<Reservation>(this.reservationsUrl, reservation, this.httpOptions);
   }
 
   approveReservationById(id:number) {
     this.getReservationById(id).subscribe(res => {
-      res.confermata=true;
+      res.confirmed=true;
       this.http.put(this.reservationsUrl, res, this.httpOptions);
     });
   }
 
   declineReservationById(id:number) {
     this.getReservationById(id).subscribe(res => {
-      res.confermata=false;
+      res.confirmed=false;
       this.http.put(this.reservationsUrl, res, this.httpOptions);
     });
   }

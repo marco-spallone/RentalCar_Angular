@@ -11,7 +11,7 @@ import {MyTableActionsEnum} from "../table/table.component";
   styleUrls: ['./userForm.component.css']
 })
 export class UserFormComponent implements OnInit {
-  customerId!:number;
+  userId!:number;
   user!:User;
   valid:boolean=true;
   action!:MyTableActionsEnum;
@@ -21,10 +21,10 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.action = params['action'];
-      this.customerId = Number.parseInt(params['userId']);
+      this.userId = parseInt(params['userId']);
     })
     if(this.action===MyTableActionsEnum.EDIT){
-      this.userService.getUserById(this.customerId).subscribe(user => this.user = user);
+      this.userService.getUserById(this.userId).subscribe(user => this.user = user);
     } else {
       this.user= {
         id:null,
@@ -38,13 +38,9 @@ export class UserFormComponent implements OnInit {
   }
 
   post(user: User) {
-    if(user.username.length>=8 && user.password.length>=8 && user.name!='' && user.surname!='' && Array.from(user.name)[0]!=' '
-      && Array.from(user.surname)[0]!=' ' && !user.username.includes(' ') && !user.password.includes(' ')){
-      if(this.action===MyTableActionsEnum.EDIT){
-        this.userService.updateUser(user).subscribe(() => this.router.navigate(['users']));
-      } else if(this.action===MyTableActionsEnum.NEW_ROW) {
-        this.userService.addUser(user).subscribe(() => this.router.navigate(['users']));
-      }
+    if(user.username.length>=8 && user.name!='' && user.surname!='' && Array.from(user.name)[0]!=' '
+      && Array.from(user.surname)[0]!=' ' && !user.username.includes(' ')){
+      this.userService.updateUser(user).subscribe(() => this.router.navigate(['users']));
       this.valid=true;
     } else {
       this.valid=false;

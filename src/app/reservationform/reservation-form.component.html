@@ -1,27 +1,23 @@
 <div *ngIf="editable" class="container">
   <div class="row">
     <div class="mx-auto mt-3 col-sm-6 col-md-6">
-      <label for="inizio">Data inizio:</label><input #inizio=ngModel name="inizio" id="inizio" type="date" class="form-control" required
-                                            [(ngModel)]="reservation.data_inizio"/>
-      <div *ngIf="inizio.invalid && (inizio.dirty || inizio.touched)"
+      <label for="startDate">Data inizio:</label><input #startDate=ngModel name="startDate" id="startDate" type="date" class="form-control" required
+                                                    [(ngModel)]="reservation.startDate"/>
+      <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)"
            class="alert">
-        <div *ngIf="inizio.errors?.['required']" style="color:red">
+        <div *ngIf="startDate.errors?.['required']" style="color:red">
           Data di inizio obbligatoria
         </div>
       </div>
-      <label for="fine">Data fine:</label><input #fine=ngModel name="fine" id="fine" type="date" class="form-control" required
-                                                  [(ngModel)]="reservation.data_fine"/>
-      <div *ngIf="fine.invalid && (fine.dirty || fine.touched)"
+      <label for="endDate">Data fine:</label><input #endDate=ngModel name="endDate" id="endDate" type="date" class="form-control" required
+                                                    [(ngModel)]="reservation.endDate"/>
+      <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)"
            class="alert">
-        <div *ngIf="fine.errors?.['required']" style="color:red">
+        <div *ngIf="endDate.errors?.['required']" style="color:red">
           Data di fine obbligatoria
         </div>
       </div>
-      <label for="selectCar">Seleziona auto:</label>
-      <select name="selectCar" id="selectCar" class="form-select" [(ngModel)]="reservation.id_auto">
-        <option *ngFor="let c of cars" [ngValue]="c.id">{{c.marca}} {{c.modello}}</option>
-      </select>
-      <button type="button" class="mt-3 btn btn-success" (click)="post(reservation)">Conferma</button>
+      <button type="button" class="mt-3 btn btn-success" (click)="post(startDate.value, endDate.value)">Conferma</button>
     </div>
   </div>
 </div>

@@ -29,23 +29,19 @@ export class CarFormComponent implements OnInit {
     } else {
       this.car = {
         id: null,
-        marca: '',
-        modello: '',
-        anno: 0,
-        prezzo: '',
-        targa: ''
+        brand: '',
+        model: '',
+        year: 0,
+        price: '',
+        plate: ''
       }
     }
   }
 
   post(car: Car) {
-    if (car.marca != null && car.modello != null && car.anno != null && 1900 <= car.anno && car.anno <= 2023 && car.prezzo != null && car.targa != null
-      && Array.from(car.marca)[0] != ' ' && Array.from(car.modello)[0] != ' ' && Array.from(car.prezzo)[0] != ' ' && Array.from(car.targa)[0] != ' ') {
-      if (this.action === MyTableActionsEnum.NEW_ROW) {
-        this.carsService.addCar(car).subscribe(() => this.router.navigate(['cars']));
-      } else {
-        this.carsService.updateCar(car).subscribe(() => this.router.navigate(['cars']));
-      }
+    if (car.brand != null && car.model != null && car.year != null && 1900 <= car.year && car.year <= 2023 && car.price != null && car.plate != null
+      && Array.from(car.brand)[0] != ' ' && Array.from(car.model)[0] != ' ' && Array.from(car.price)[0] != ' ' && Array.from(car.plate)[0] != ' ') {
+      this.carsService.updateCar(car).subscribe(() => this.router.navigate(['cars']));
     }
   }
 }

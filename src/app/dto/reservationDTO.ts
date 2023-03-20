@@ -1,9 +1,11 @@
+import {User} from "../interfaces/user";
+import {Car} from "../interfaces/car";
 
 export interface ReservationDTO{
   id:number | null,
-  data_inizio:string,
-  data_fine:string,
-  confermata:string,
-  id_utente:number,
-  id_auto:number
+  startDate:string,
+  endDate:string,
+  confirmed:string,
+  user:User,
+  car:Car | null
 }

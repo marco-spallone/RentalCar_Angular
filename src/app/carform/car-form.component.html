@@ -4,7 +4,7 @@
       <h2>Modifica dati</h2>
       <label for="marca">Marca:</label><input #marca=ngModel name="marca" id="marca" type="text" class="form-control"
                                               required
-                                              [(ngModel)]="car.marca"/>
+                                              [(ngModel)]="car.brand"/>
       <div *ngIf="marca.invalid && (marca.dirty || marca.touched)"
            class="alert">
         <div *ngIf="marca.errors?.['required']" style="color:red">
@@ -13,7 +13,7 @@
       </div>
       <label for="modello">Modello:</label><input #modello=ngModel name="modello" id="modello" type="text"
                                                   class="form-control" required
-                                                  [(ngModel)]="car.modello"/>
+                                                  [(ngModel)]="car.model"/>
       <div *ngIf="modello.invalid && (modello.dirty || modello.touched)"
            class="alert">
         <div *ngIf="modello.errors?.['required']" style="color:red">
@@ -22,7 +22,7 @@
       </div>
       <label for="anno">Anno:</label><input #anno=ngModel name="anno" id="anno" type="number" class="form-control"
                                             required min="1900"
-                                            max="2023" [(ngModel)]="car.anno"/>
+                                            max="2023" [(ngModel)]="car.year"/>
       <div *ngIf="anno.invalid && (anno.dirty || anno.touched)"
            class="alert">
         <div *ngIf="anno.errors?.['required']" style="color:red">
@@ -34,7 +34,7 @@
       </div>
       <label for="prezzo">Prezzo:</label><input #prezzo=ngModel name="prezzo" id="prezzo" type="text"
                                                 class="form-control" required
-                                                [(ngModel)]="car.prezzo"/>
+                                                [(ngModel)]="car.price"/>
       <div *ngIf="prezzo.invalid && (prezzo.dirty || prezzo.touched)"
            class="alert">
         <div *ngIf="prezzo.errors?.['required']" style="color:red">
@@ -42,7 +42,7 @@
         </div>
       </div>
       <label for="targa">Targa:</label><input #targa=ngModel name="targa" id="targa" type="text" class="form-control"
-                                              [(ngModel)]="car.targa"/>
+                                              [(ngModel)]="car.plate"/>
       <div *ngIf="targa.invalid && (targa.dirty || targa.touched)"
            class="alert">
         <div *ngIf="targa.errors?.['required']" style="color:red">

@@ -19,7 +19,7 @@ export class CarsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isAdmin = localStorage.getItem('user');
+    this.isAdmin = localStorage.getItem('admin');
     this.carService.getCars().subscribe(cars => {
       this.cars = cars;
     });

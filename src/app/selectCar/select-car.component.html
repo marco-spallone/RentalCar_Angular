@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto mt-3 col-sm-6 col-md-6">
+      <label for="selectCar">Seleziona auto:</label>
+      <select #car name="selectCar" id="selectCar" class="form-select">
+        <option *ngFor="let c of cars" value="{{c.id}}">{{c.brand}} {{c.model}}</option>
+      </select>
+      <button class="mt-3 btn btn-success" (click)="post(car.value)">Conferma prenotazione</button>
+    </div>
+  </div>
+</div>
+

@@ -14,12 +14,11 @@ import { PaginationPipe } from './pipes/pagination.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { ReservationsComponent } from './reservations/reservations.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
 import { ReservationFormComponent } from './reservationform/reservation-form.component';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
 import {AuthInterceptor} from "./interceptor/authInterceptor";
+import { SelectCarComponent } from './selectCar/select-car.component';
 
 
 
@@ -38,16 +37,15 @@ import {AuthInterceptor} from "./interceptor/authInterceptor";
     SortPipe,
     ReservationsComponent,
     ReservationFormComponent,
-    LoginComponent
+    LoginComponent,
+    SelectCarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false })
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

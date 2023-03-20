@@ -1,9 +1,11 @@
+import {User} from "./user";
+import {Car} from "./car";
 
 export interface Reservation{
   id:number | null,
-  data_inizio:string,
-  data_fine:string,
-  confermata:boolean,
-  id_utente:number,
-  id_auto:number
+  startDate:string,
+  endDate:string,
+  confirmed:boolean,
+  user:User,
+  car:Car | null
 }

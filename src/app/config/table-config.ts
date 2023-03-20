@@ -34,19 +34,19 @@ export const usersTableConfig: MyTableConfig = {
 
 export const carsTableConfigForAdmin: MyTableConfig = {
   headers: [
-    new MyHeaders('Marca', 'marca'),
-    new MyHeaders('Modello', 'modello'),
-    new MyHeaders('Anno', 'anno'),
-    new MyHeaders('Prezzo', 'prezzo'),
-    new MyHeaders('Targa', 'targa'),
+    new MyHeaders('Marca', 'brand'),
+    new MyHeaders('Modello', 'model'),
+    new MyHeaders('Anno', 'year'),
+    new MyHeaders('Prezzo', 'price'),
+    new MyHeaders('Targa', 'plate'),
   ],
-  search: new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
+  search: new MySearch(['brand', 'model', 'year', 'price', 'plate']),
   actions: [
     new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
     new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
   ],
   pagination: new MyPagination(20, [10, 20, 50]),
-  order: new MyOrder('marca', 'desc'),
+  order: new MyOrder('brand', 'desc'),
   topAction:[
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
   ]
@@ -54,16 +54,16 @@ export const carsTableConfigForAdmin: MyTableConfig = {
 
 export const carsTableConfigForCustomer: MyTableConfig = {
   headers: [
-    new MyHeaders('Marca', 'marca'),
-    new MyHeaders('Modello', 'modello'),
-    new MyHeaders('Anno', 'anno'),
-    new MyHeaders('Prezzo', 'prezzo'),
-    new MyHeaders('Targa', 'targa'),
+    new MyHeaders('Marca', 'brand'),
+    new MyHeaders('Modello', 'model'),
+    new MyHeaders('Anno', 'year'),
+    new MyHeaders('Prezzo', 'price'),
+    new MyHeaders('Targa', 'plate'),
   ],
-  search: new MySearch(['marca', 'modello', 'anno', 'prezzo', 'targa']),
+  search: new MySearch(['brand', 'model', 'year', 'price', 'plate']),
   actions: [],
   pagination: new MyPagination(20, [10, 20, 50]),
-  order: new MyOrder('marca', 'desc'),
+  order: new MyOrder('brand', 'desc'),
   topAction:[]
 }
 

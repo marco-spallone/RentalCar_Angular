@@ -28,16 +28,16 @@ export class ReservationsComponent implements OnInit {
       this.tableConfig = reservationsTableConfigForAdmin;
     } else this.tableConfig = reservationsTableConfigForCustomer;
     this.route.params.subscribe(params => {
-      this.userId = Number.parseInt(params['id']);
+      this.userId = Number.parseInt(params['userId']);
     })
     this.reservationsService.getReservations().subscribe(reservations => {
-      this.reservationsDTO = reservations.filter(item => item.id_utente === this.userId).map(res => this.mapper.fromResToDTO(res));
+      this.reservationsDTO = reservations.filter(item => item.user.id === this.userId).map(res => this.mapper.fromResToDTO(res));
     });
   }
 
   checkDeletable(reservation: Reservation): boolean {
     let date2 = moment();
-    let date1 = moment(reservation.data_inizio);
+    let date1 = moment(reservation.startDate);
     return date2.diff(date1, 'days') >= 2;
   }
 
@@ -57,7 +57,7 @@ export class ReservationsComponent implements OnInit {
             if (this.checkDeletable(reservation)) {
               this.reservationsService.deleteReservation(reservation).subscribe(() => {
                 this.reservationsService.getReservations().subscribe(res => {
-                  this.reservationsDTO = res.filter(item => item.id_utente === this.userId).map(res => this.mapper.fromResToDTO(res));
+                  this.reservationsDTO = res.filter(item => item.user.id === this.userId).map(res => this.mapper.fromResToDTO(res));
                 });
               });
             } else alert('IMPOSSIBILE CANCELLARE LA PRENOTAZIONE! MANCANO MENO DI 2 GIORNI ALLA DATA DI INIZIO.');
@@ -67,13 +67,13 @@ export class ReservationsComponent implements OnInit {
       case MyTableActionsEnum.APPROVE:
         if(entity.id!=null){
           this.reservationsService.approveReservationById(entity.id);
-          entity.confermata='Sì';
+          entity.confirmed='Sì';
         }
         break;
       case MyTableActionsEnum.DECLINE:
         if(entity.id!=null){
           this.reservationsService.declineReservationById(entity.id);
-          entity.confermata='No';
+          entity.confirmed='No';
         }
         break;
       default:
