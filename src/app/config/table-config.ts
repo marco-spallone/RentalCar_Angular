@@ -69,10 +69,10 @@ export const carsTableConfigForCustomer: MyTableConfig = {
 
 export const reservationsTableConfigForAdmin: MyTableConfig = {
   headers: [
-    new MyHeaders('Data Inizio', 'data_inizio'),
-    new MyHeaders('Data Fine', 'data_fine'),
-    new MyHeaders('Confermata', 'confermata'),
-    new MyHeaders('Auto', 'id_auto')
+    new MyHeaders('Data Inizio', 'startDate'),
+    new MyHeaders('Data Fine', 'endDate'),
+    new MyHeaders('Confermata', 'confirmed'),
+    new MyHeaders('Auto', 'carId')
   ],
   search: new MySearch(['data_inizio', 'data_fine', 'id_auto']),
   actions: [
@@ -80,24 +80,24 @@ export const reservationsTableConfigForAdmin: MyTableConfig = {
     new MyTableAction(MyTableActionsEnum.DECLINE, declineReservation)
   ],
   pagination: new MyPagination(10, [3, 5, 10]),
-  order: new MyOrder('id_auto', 'desc'),
+  order: new MyOrder('carId', 'desc'),
   topAction:[]
 }
 
 export const reservationsTableConfigForCustomer: MyTableConfig = {
   headers: [
-    new MyHeaders('Data Inizio', 'data_inizio'),
-    new MyHeaders('Data Fine', 'data_fine'),
-    new MyHeaders('Confermata', 'confermata'),
-    new MyHeaders('Auto', 'id_auto')
+    new MyHeaders('Data Inizio', 'startDate'),
+    new MyHeaders('Data Fine', 'endDate'),
+    new MyHeaders('Confermata', 'confirmed'),
+    new MyHeaders('Auto', 'carId')
   ],
-  search: new MySearch(['data_inizio', 'data_fine', 'id_auto']),
+  search: new MySearch(['startDate', 'endDate', 'carId']),
   actions: [
     new MyTableAction(MyTableActionsEnum.EDIT, editButtonConfig),
     new MyTableAction(MyTableActionsEnum.DELETE, deleteButtonConfig)
   ],
   pagination: new MyPagination(10, [3, 5, 10]),
-  order: new MyOrder('id_auto', 'desc'),
+  order: new MyOrder('carId', 'desc'),
   topAction:[
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
   ]

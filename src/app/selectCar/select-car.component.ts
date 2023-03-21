@@ -6,6 +6,7 @@ import {CarsService} from "../services/cars.service";
 import {User} from "../interfaces/user";
 import {UsersService} from "../services/users.service";
 import {ReservationsService} from "../services/reservations.service";
+import {ReservationDTO} from "../dto/reservationDTO";
 
 @Component({
   selector: 'app-select-car',
@@ -16,9 +17,11 @@ export class SelectCarComponent implements OnInit{
 
   startDate!:string;
   endDate!:string;
+  reservationId!:number;
   reservation!:Reservation;
   cars!:Car[];
   user!:User;
+  reservationDTO!:ReservationDTO;
 
   constructor(private route:ActivatedRoute, private router:Router, private carsService:CarsService, private usersService:UsersService,
               private reservationService:ReservationsService) {
@@ -27,18 +30,21 @@ export class SelectCarComponent implements OnInit{
   ngOnInit() {
     this.usersService.getUserById(parseInt(localStorage.getItem('userId')!)).subscribe(user => {
       this.user = user;
-      this.reservation = {
+      this.reservationDTO = {
         id: null,
         startDate: '',
         endDate: '',
-        confirmed: false,
-        user: user,
-        car: null
+        confirmed: 'No',
+        userId: user.id!,
+        carId: null
       }
     })
     this.route.params.subscribe(params => {
       this.startDate=params['startDate'];
       this.endDate=params['endDate'];
+      if(params['resId']!=null){
+        this.reservationId=params['resId'];
+      }
       this.carsService.getFreeCars(this.startDate, this.endDate).subscribe(cars => {
         this.cars=cars;
       })
@@ -48,13 +54,18 @@ export class SelectCarComponent implements OnInit{
 
   post(value:string){
     let carId = parseInt(value);
-    this.carsService.getCarById(carId).subscribe(car => {
-      this.reservation.car=car;
-      this.reservation.startDate=this.startDate;
-      this.reservation.endDate=this.endDate;
-      console.log(this.reservation);
-      this.reservationService.updateReservation(this.reservation);
-    })
-  }
-
+    if(this.reservationId!=null){
+      this.reservationDTO.id=this.reservationId;
+    } else {
+      this.reservationDTO.id=null;
+    }
+    this.reservationDTO.startDate=this.startDate;
+    this.reservationDTO.endDate=this.endDate;
+    this.reservationDTO.confirmed=null;
+    this.reservationDTO.userId=this.user.id;
+    this.reservationDTO.carId=carId;
+      this.reservationService.updateReservation(this.reservationDTO).subscribe(res => {
+        this.router.navigate(['reservations',localStorage.getItem('userId')])
+      });
+    }
 }

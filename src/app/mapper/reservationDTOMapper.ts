@@ -13,8 +13,8 @@ export class ReservationDTOMapper{
       startDate: reservation.startDate,
       endDate: reservation.endDate,
       confirmed: reservation.confirmed? 'Sì' : 'No',
-      user: reservation.user,
-      car: reservation.car
+      userId: reservation.userId,
+      carId: reservation.carId
     }
   }
 }

@@ -6,6 +6,6 @@ export interface Reservation{
   startDate:string,
   endDate:string,
   confirmed:boolean,
-  user:User,
-  car:Car | null
+  userId:number,
+  carId:number | null
 }

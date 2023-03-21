@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'addReservation/:action/:userId', component: ReservationFormComponent },
   { path: 'editReservation/:action/:userId/:resId', component: ReservationFormComponent },
   { path: 'selectCar/:startDate/:endDate', component: SelectCarComponent },
+  { path: 'selectCar/:startDate/:endDate/:resId', component: SelectCarComponent },
   { path: 'userProfile/:userId/:action', component: UserFormComponent }
 ];
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
 
@@ -15,7 +15,6 @@ export class LoginComponent {
 
   login(username:string, password:string){
     this.usersService.login(username, password).subscribe(response => {
-      localStorage.setItem('response', JSON.stringify(response));
       localStorage.setItem('token', response.value);
       localStorage.setItem('userId', String(response.id));
       localStorage.setItem('admin', String(response.admin));

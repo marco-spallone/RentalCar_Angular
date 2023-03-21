@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {MyTableActionsEnum} from "../table/table.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
 export class NavbarComponent implements OnInit{
 
   navbarCollapsed = true;
-
   isAdmin:string|null=localStorage.getItem('admin');
   userId!:string;
   urlHome!:string;
@@ -24,10 +23,20 @@ export class NavbarComponent implements OnInit{
     if(this.isAdmin==='true'){
       this.urlHome='/users';
     } else this.urlHome='/reservations/'+this.userId;
+    window.addEventListener('storage', event => {
+      console.log(event);
+      console.log('change');
+    })
   }
 
   toggle(){
     this.navbarCollapsed = !this.navbarCollapsed;
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('admin');
   }
 
 }

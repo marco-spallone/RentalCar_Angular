@@ -21,12 +21,11 @@ export const approveReservation: MyButtonConfig = {
   text: 'Approva',
   cssClass: 'mt-3 btn btn-outline-success',
   show(entity: any): boolean {
-    if (entity.confermata != null && entity.confermata==='Sì') {
+    if (entity.confirmed != null && entity.confirmed==='Sì') {
       return false;
-    } else if(entity.confermata != null && entity.confermata==='No'){
+    } else {
       return true;
     }
-    return false;
   }
 }
 export const declineReservation: MyButtonConfig = {
@@ -34,11 +33,10 @@ export const declineReservation: MyButtonConfig = {
   text: 'Declina',
   cssClass: 'mt-3 btn btn-outline-danger',
   show(entity: any): boolean {
-    if (entity.confermata != null && entity.confermata==='Sì') {
+    if (entity.confirmed != null && entity.confirmed==='Sì') {
       return false;
-    } else if(entity.confermata != null && entity.confermata==='No'){
+    } else {
       return true;
     }
-    return false;
   }
 }

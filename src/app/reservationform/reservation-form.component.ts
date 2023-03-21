@@ -42,8 +42,8 @@ export class ReservationFormComponent implements OnInit {
             startDate: '',
             endDate: '',
             confirmed: false,
-            user: user,
-            car: null
+            userId: this.userId,
+            carId: null
           }
         })
       }
@@ -53,12 +53,18 @@ export class ReservationFormComponent implements OnInit {
   checkEditable() {
     let date2 = moment();
     let date1 = moment(this.reservation.startDate);
-    return date2.diff(date1, 'days') >= 2 ? this.editable = true : this.editable = false;
+    return date1.diff(date2, 'days') >= 2 ? this.editable = true : this.editable = false;
   }
 
   post(startDate: string, endDate:string) {
-    if (startDate != null && endDate != null) {
-      this.router.navigate(['selectCar', startDate, endDate]);
+    if(this.reservationId!=null){
+      if (startDate != null && endDate != null){
+        this.router.navigate(['selectCar', startDate, endDate, this.reservationId]);
+      }
+    } else {
+      if (startDate != null && endDate != null) {
+        this.router.navigate(['selectCar', startDate, endDate]);
+      }
     }
   }
 
