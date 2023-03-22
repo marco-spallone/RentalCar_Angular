@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {Car} from "../interfaces/car";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Reservation} from "../interfaces/reservation";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,8 @@ export class CarsService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+  }
 
   getCars(): Observable<Car[]> {
     return this.http.get<Car[]>(this.carsUrl, this.httpOptions);
@@ -25,12 +25,12 @@ export class CarsService {
     return this.http.get<Car>(url);
   }
 
-  getFreeCars(startDate: string, endDate:string): Observable<Car[]> {
-    const freeCarRequest:any={
+  getFreeCars(startDate: string, endDate: string): Observable<Car[]> {
+    const freeCarRequest: any = {
       startDate: startDate,
       endDate: endDate
     }
-    return this.http.post<Car[]>(this.carsUrl+"/free-cars", freeCarRequest);
+    return this.http.post<Car[]>(this.carsUrl + "/free-cars", freeCarRequest);
   }
 
   updateCar(car: Car): Observable<any> {

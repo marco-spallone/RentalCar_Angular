@@ -13,18 +13,18 @@ import {ReservationDTO} from "../dto/reservationDTO";
   templateUrl: './select-car.component.html',
   styleUrls: ['./select-car.component.css']
 })
-export class SelectCarComponent implements OnInit{
+export class SelectCarComponent implements OnInit {
 
-  startDate!:string;
-  endDate!:string;
-  reservationId!:number;
-  reservation!:Reservation;
-  cars!:Car[];
-  user!:User;
-  reservationDTO!:ReservationDTO;
+  startDate!: string;
+  endDate!: string;
+  reservationId!: number;
+  reservation!: Reservation;
+  cars!: Car[];
+  user!: User;
+  reservationDTO!: ReservationDTO;
 
-  constructor(private route:ActivatedRoute, private router:Router, private carsService:CarsService, private usersService:UsersService,
-              private reservationService:ReservationsService) {
+  constructor(private route: ActivatedRoute, private router: Router, private carsService: CarsService, private usersService: UsersService,
+              private reservationService: ReservationsService) {
   }
 
   ngOnInit() {
@@ -40,32 +40,32 @@ export class SelectCarComponent implements OnInit{
       }
     })
     this.route.params.subscribe(params => {
-      this.startDate=params['startDate'];
-      this.endDate=params['endDate'];
-      if(params['resId']!=null){
-        this.reservationId=params['resId'];
+      this.startDate = params['startDate'];
+      this.endDate = params['endDate'];
+      if (params['resId'] != null) {
+        this.reservationId = params['resId'];
       }
       this.carsService.getFreeCars(this.startDate, this.endDate).subscribe(cars => {
-        this.cars=cars;
+        this.cars = cars;
       })
     })
 
   }
 
-  post(value:string){
+  post(value: string) {
     let carId = parseInt(value);
-    if(this.reservationId!=null){
-      this.reservationDTO.id=this.reservationId;
+    if (this.reservationId != null) {
+      this.reservationDTO.id = this.reservationId;
     } else {
-      this.reservationDTO.id=null;
+      this.reservationDTO.id = null;
     }
-    this.reservationDTO.startDate=this.startDate;
-    this.reservationDTO.endDate=this.endDate;
-    this.reservationDTO.confirmed=null;
-    this.reservationDTO.userId=this.user.id;
-    this.reservationDTO.carId=carId;
-      this.reservationService.updateReservation(this.reservationDTO).subscribe(res => {
-        this.router.navigate(['reservations',localStorage.getItem('userId')])
-      });
-    }
+    this.reservationDTO.startDate = this.startDate;
+    this.reservationDTO.endDate = this.endDate;
+    this.reservationDTO.confirmed = null;
+    this.reservationDTO.userId = this.user.id;
+    this.reservationDTO.carId = carId;
+    this.reservationService.updateReservation(this.reservationDTO).subscribe(res => {
+      this.router.navigate(['reservations', localStorage.getItem('userId')])
+    });
+  }
 }

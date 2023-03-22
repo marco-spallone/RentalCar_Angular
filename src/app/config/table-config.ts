@@ -8,7 +8,9 @@ import {
   MyTableConfig
 } from "../table/table.component";
 import {
-  addButtonConfig, approveReservation, declineReservation,
+  addButtonConfig,
+  approveReservation,
+  declineReservation,
   deleteButtonConfig,
   editButtonConfig,
   viewResButtonConfig
@@ -27,7 +29,7 @@ export const usersTableConfig: MyTableConfig = {
   ],
   pagination: new MyPagination(20, [10, 20, 50]),
   order: new MyOrder('name', 'desc'),
-  topAction:[
+  topAction: [
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
   ]
 }
@@ -47,7 +49,7 @@ export const carsTableConfigForAdmin: MyTableConfig = {
   ],
   pagination: new MyPagination(20, [10, 20, 50]),
   order: new MyOrder('brand', 'desc'),
-  topAction:[
+  topAction: [
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
   ]
 }
@@ -64,7 +66,7 @@ export const carsTableConfigForCustomer: MyTableConfig = {
   actions: [],
   pagination: new MyPagination(20, [10, 20, 50]),
   order: new MyOrder('brand', 'desc'),
-  topAction:[]
+  topAction: []
 }
 
 export const reservationsTableConfigForAdmin: MyTableConfig = {
@@ -81,7 +83,7 @@ export const reservationsTableConfigForAdmin: MyTableConfig = {
   ],
   pagination: new MyPagination(10, [3, 5, 10]),
   order: new MyOrder('carId', 'desc'),
-  topAction:[]
+  topAction: []
 }
 
 export const reservationsTableConfigForCustomer: MyTableConfig = {
@@ -98,7 +100,7 @@ export const reservationsTableConfigForCustomer: MyTableConfig = {
   ],
   pagination: new MyPagination(10, [3, 5, 10]),
   order: new MyOrder('carId', 'desc'),
-  topAction:[
+  topAction: [
     new MyTableAction(MyTableActionsEnum.NEW_ROW, addButtonConfig)
   ]
 }

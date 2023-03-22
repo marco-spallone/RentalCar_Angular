@@ -1,12 +1,13 @@
 import {MyButtonConfig} from "../button/button.component";
 import {
-  faPlus,
-  faPen,
-  faCalendar,
-  faTrash,
   faArrowLeft,
   faArrowRight,
-  faCheck, faX
+  faCalendar,
+  faCheck,
+  faPen,
+  faPlus,
+  faTrash,
+  faX
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -21,7 +22,7 @@ export const approveReservation: MyButtonConfig = {
   text: 'Approva',
   cssClass: 'mt-3 btn btn-outline-success',
   show(entity: any): boolean {
-    if (entity.confirmed != null && entity.confirmed==='Sì') {
+    if (entity.confirmed != null && entity.confirmed === 'Sì') {
       return false;
     } else {
       return true;
@@ -33,7 +34,7 @@ export const declineReservation: MyButtonConfig = {
   text: 'Declina',
   cssClass: 'mt-3 btn btn-outline-danger',
   show(entity: any): boolean {
-    if (entity.confirmed != null && entity.confirmed==='Sì') {
+    if (entity.confirmed != null && entity.confirmed === 'Sì') {
       return false;
     } else {
       return true;

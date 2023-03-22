@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersService} from "../services/users.service";
 import {User} from "../interfaces/user";
-import {Location} from "@angular/common";
 import {MyTableActionsEnum} from "../table/table.component";
 
 @Component({
@@ -11,39 +10,52 @@ import {MyTableActionsEnum} from "../table/table.component";
   styleUrls: ['./userForm.component.css']
 })
 export class UserFormComponent implements OnInit {
-  userId!:number;
-  user!:User;
-  valid:boolean=true;
-  action!:MyTableActionsEnum;
+  userId!: number;
+  user!: User;
+  username!:string;
+  valid: boolean = true;
+  action!: MyTableActionsEnum;
 
-  constructor(private route: ActivatedRoute, private router:Router, private userService: UsersService) {
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UsersService) {
   }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.action = params['action'];
       this.userId = parseInt(params['userId']);
     })
-    if(this.action===MyTableActionsEnum.EDIT){
-      this.userService.getUserById(this.userId).subscribe(user => this.user = user);
+    if (this.action === MyTableActionsEnum.EDIT) {
+      this.userService.getUserById(this.userId).subscribe(user => {
+        this.user = user;
+        this.username=user.username;
+      });
     } else {
-      this.user= {
-        id:null,
-        name:'',
-        surname:'',
-        isAdmin:false,
-        username:'',
-        password:''
+      this.user = {
+        id: null,
+        name: '',
+        surname: '',
+        isAdmin: false,
+        username: '',
+        password: ''
       }
     }
   }
 
-  post(user: User) {
-    if(user.username.length>=8 && user.name!='' && user.surname!='' && Array.from(user.name)[0]!=' '
-      && Array.from(user.surname)[0]!=' ' && !user.username.includes(' ')){
-      this.userService.updateUser(user).subscribe(() => this.router.navigate(['users']));
-      this.valid=true;
+  post(editUser: User) {
+    if (editUser.username.length >= 8 && editUser.name != '' && editUser.surname != '' && Array.from(editUser.name)[0] != ' '
+      && Array.from(editUser.surname)[0] != ' ' && !editUser.username.includes(' ')) {
+      this.userService.updateUser(editUser).subscribe(() => {
+        this.valid = true;
+        if(editUser.id===this.user.id && editUser.username!=this.username) {
+          alert('Dopo la modifica dell\'username è necessario effettuare di nuovo il login.');
+          localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('admin');
+          this.router.navigate(['login']);
+        }
+      });
     } else {
-      this.valid=false;
+      this.valid = false;
     }
   }
 

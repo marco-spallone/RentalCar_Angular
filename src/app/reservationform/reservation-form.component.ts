@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Reservation} from "../interfaces/reservation";
 import {ReservationsService} from "../services/reservations.service";
 import {MyTableActionsEnum} from "../table/table.component";
-import {Car} from "../interfaces/car";
 import {CarsService} from "../services/cars.service";
 import * as moment from "moment";
 import {UsersService} from "../services/users.service";
@@ -56,9 +55,9 @@ export class ReservationFormComponent implements OnInit {
     return date1.diff(date2, 'days') >= 2 ? this.editable = true : this.editable = false;
   }
 
-  post(startDate: string, endDate:string) {
-    if(this.reservationId!=null){
-      if (startDate != null && endDate != null){
+  post(startDate: string, endDate: string) {
+    if (this.reservationId != null) {
+      if (startDate != null && endDate != null) {
         this.router.navigate(['selectCar', startDate, endDate, this.reservationId]);
       }
     } else {

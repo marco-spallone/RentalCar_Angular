@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from "../interfaces/user";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginResponse} from "../interfaces/loginResponse";
@@ -39,9 +39,9 @@ export class UsersService {
   }
 
   login(username: string, password: string) {
-    const loginRequest:any={
-      username:username,
-      password:password
+    const loginRequest: any = {
+      username: username,
+      password: password
     }
     return this.http.post<LoginResponse>(this.loginUrl, loginRequest);
   }

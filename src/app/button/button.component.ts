@@ -23,7 +23,7 @@ export class MyButtonConfig {
     this.cssClass = cssClass;
   }
 
-  show(entity:any):boolean{
+  show(entity: any): boolean {
     return true;
   }
 }

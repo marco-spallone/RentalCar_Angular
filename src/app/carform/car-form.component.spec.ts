@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CarFormComponent } from './car-form.component';
+import {CarFormComponent} from './car-form.component';
 
 describe('CarFormComponent', () => {
   let component: CarFormComponent;
@@ -8,9 +8,9 @@ describe('CarFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CarFormComponent ]
+      declarations: [CarFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CarFormComponent);
     component = fixture.componentInstance;

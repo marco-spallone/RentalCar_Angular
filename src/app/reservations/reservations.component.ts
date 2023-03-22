@@ -42,7 +42,7 @@ export class ReservationsComponent implements OnInit {
   }
 
   action(entity: ReservationDTO, action: MyTableActionsEnum) {
-    let reservation!:Reservation;
+    let reservation!: Reservation;
     switch (action) {
       case MyTableActionsEnum.NEW_ROW:
         this.router.navigate(['addReservation', action, this.userId]);
@@ -51,7 +51,7 @@ export class ReservationsComponent implements OnInit {
         this.router.navigate(['editReservation', action, this.userId, entity.id]);
         break;
       case MyTableActionsEnum.DELETE:
-        if(entity.id!=null){
+        if (entity.id != null) {
           this.reservationsService.getReservationById(entity.id).subscribe(res => {
             reservation = res;
             if (this.checkDeletable(reservation)) {
@@ -65,17 +65,17 @@ export class ReservationsComponent implements OnInit {
         }
         break;
       case MyTableActionsEnum.APPROVE:
-        if(entity.id!=null){
+        if (entity.id != null) {
           this.reservationsService.approveReservation(entity.id).subscribe(res => {
-            entity.confirmed='Sì';
+            entity.confirmed = 'Sì';
             this.router.navigate(['reservations', this.userId])
           });
         }
         break;
       case MyTableActionsEnum.DECLINE:
-        if(entity.id!=null){
+        if (entity.id != null) {
           this.reservationsService.declineReservation(entity.id).subscribe(res => {
-            entity.confirmed='No';
+            entity.confirmed = 'No';
             this.router.navigate(['reservations', this.userId])
           });
         }

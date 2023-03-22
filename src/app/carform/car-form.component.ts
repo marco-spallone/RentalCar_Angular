@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CarsService} from "../services/cars.service";
 import {Car} from "../interfaces/car";
-import {Location} from '@angular/common';
 import {MyTableActionsEnum} from "../table/table.component";
 
 

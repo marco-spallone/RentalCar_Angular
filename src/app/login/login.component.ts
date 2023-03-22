@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
 
@@ -10,10 +10,10 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
 
-  constructor(private usersService:UsersService, private router:Router) {
+  constructor(private usersService: UsersService, private router: Router) {
   }
 
-  login(username:string, password:string){
+  login(username: string, password: string) {
     this.usersService.login(username, password).subscribe(response => {
       localStorage.setItem('token', response.value);
       localStorage.setItem('userId', String(response.id));

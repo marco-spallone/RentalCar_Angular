@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {prevButtonConfig, nextButtonConfig} from "../config/button-config";
+import {nextButtonConfig, prevButtonConfig} from "../config/button-config";
 import {MyButtonConfig} from "../button/button.component";
-import {reservationsTableConfigForAdmin} from "../config/table-config";
-import {Reservation} from "../interfaces/reservation";
-import {faHashtag, faHouse} from "@fortawesome/free-solid-svg-icons";
+import {faHashtag} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-table',

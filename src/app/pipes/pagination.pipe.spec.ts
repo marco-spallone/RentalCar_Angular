@@ -1,4 +1,4 @@
-import { PaginationPipe } from './pagination.pipe';
+import {PaginationPipe} from './pagination.pipe';
 
 describe('PaginationPipe', () => {
   it('create an instance', () => {

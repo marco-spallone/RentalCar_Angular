@@ -17,8 +17,8 @@ export class ReservationsService {
   constructor(private router: Router, private http: HttpClient) {
   }
 
-  getReservations(id:number): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(this.reservationsUrl+'/user/'+id);
+  getReservations(id: number): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.reservationsUrl + '/user/' + id);
   }
 
   getReservationById(id: number): Observable<Reservation> {
@@ -30,12 +30,12 @@ export class ReservationsService {
     return this.http.post<Reservation>(this.reservationsUrl, reservationDTO, this.httpOptions);
   }
 
-  approveReservation(id:number): Observable<any> {
-    return this.http.post<Reservation>(this.reservationsUrl+'/approve/'+id, this.httpOptions);
+  approveReservation(id: number): Observable<any> {
+    return this.http.post<Reservation>(this.reservationsUrl + '/approve/' + id, this.httpOptions);
   }
 
-  declineReservation(id:number): Observable<any> {
-    return this.http.post<Reservation>(this.reservationsUrl+'/decline/'+id, this.httpOptions);
+  declineReservation(id: number): Observable<any> {
+    return this.http.post<Reservation>(this.reservationsUrl + '/decline/' + id, this.httpOptions);
   }
 
   deleteReservation(reservation: Reservation): Observable<Reservation> {
