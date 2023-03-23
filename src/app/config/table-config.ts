@@ -76,7 +76,7 @@ export const reservationsTableConfigForAdmin: MyTableConfig = {
     new MyHeaders('Confermata', 'confirmed'),
     new MyHeaders('Auto', 'carId')
   ],
-  search: new MySearch(['data_inizio', 'data_fine', 'id_auto']),
+  search: new MySearch(['startDate', 'endDate', 'carId']),
   actions: [
     new MyTableAction(MyTableActionsEnum.APPROVE, approveReservation),
     new MyTableAction(MyTableActionsEnum.DECLINE, declineReservation)

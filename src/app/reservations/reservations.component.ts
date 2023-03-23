@@ -31,6 +31,7 @@ export class ReservationsComponent implements OnInit {
       this.userId = Number.parseInt(params['userId']);
       this.reservationsService.getReservations(this.userId).subscribe(reservations => {
         this.reservationsDTO = reservations.filter(item => item.userId === this.userId).map(res => this.mapper.fromResToDTO(res));
+        console.log(this.reservationsDTO);
       });
     })
   }

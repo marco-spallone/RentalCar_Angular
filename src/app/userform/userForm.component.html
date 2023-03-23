@@ -31,7 +31,21 @@
           Username obbligatorio. L'username deve contenere almeno 8 caratteri e non può contenere spazi.
         </div>
         <div *ngIf="username.errors?.['minlength']" style="color:red">
-          L'username deve essere lungo almeno 6 caratteri
+          L'username deve essere lungo almeno 6 caratteri.
+        </div>
+      </div>
+      <div *ngIf="showPasswordInput">
+        <label for="password">Password:</label><input #password=ngModel name="password" id="password" type="text"
+                                                                                class="form-control" required minlength="6"
+                                                                                [(ngModel)]="user.password"/>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+             class="alert">
+          <div *ngIf="password.errors?.['required']" style="color:red">
+            Password obbligatoria. La password deve contenere almeno 8 caratteri e non può contenere spazi.
+          </div>
+          <div *ngIf="password.errors?.['minlength']" style="color:red">
+            La password deve essere lungo almeno 6 caratteri.
+          </div>
         </div>
       </div>
       <button type="button" class="mt-3 btn btn-success" (click)="post(user)">Conferma</button>

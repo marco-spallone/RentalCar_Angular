@@ -6,6 +6,10 @@ import {MyTableActionsEnum} from "../table/table.component";
 import {CarsService} from "../services/cars.service";
 import * as moment from "moment";
 import {UsersService} from "../services/users.service";
+import {Car} from "../interfaces/car";
+import {ReservationDTO} from "../dto/reservationDTO";
+import {ReservationDTOMapper} from "../mapper/reservationDTOMapper";
+import {end} from "@popperjs/core";
 
 @Component({
   selector: 'app-reservation-form',
@@ -19,9 +23,15 @@ export class ReservationFormComponent implements OnInit {
   userId!: number;
   editable: boolean = true;
   reservations!: Reservation[];
+  insertedDate:boolean=false;
+  cars!:Car[];
+  reservationDTO!: ReservationDTO;
+  startDate!:string;
+  endDate!:string;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private usersService: UsersService, private reservationsService: ReservationsService, private carsService: CarsService) {
+  constructor(private route: ActivatedRoute, private router: Router, private usersService: UsersService,
+              private reservationsService: ReservationsService, private carsService: CarsService, private mapper:ReservationDTOMapper) {
   }
 
   ngOnInit(): void {
@@ -31,17 +41,17 @@ export class ReservationFormComponent implements OnInit {
       this.userId = parseInt(params['userId']);
       if (this.action === MyTableActionsEnum.EDIT) {
         this.reservationsService.getReservationById(this.reservationId).subscribe(res => {
-          this.reservation = res;
+          this.reservationDTO = this.mapper.fromResToDTO(res);
           this.checkEditable();
         });
       } else {
         this.usersService.getUserById(this.userId).subscribe(user => {
-          this.reservation = {
+          this.reservationDTO = {
             id: null,
             startDate: '',
             endDate: '',
-            confirmed: false,
-            userId: this.userId,
+            confirmed: 'No',
+            userId: user.id!,
             carId: null
           }
         })
@@ -55,16 +65,32 @@ export class ReservationFormComponent implements OnInit {
     return date1.diff(date2, 'days') >= 2 ? this.editable = true : this.editable = false;
   }
 
-  post(startDate: string, endDate: string) {
-    if (this.reservationId != null) {
-      if (startDate != null && endDate != null) {
-        this.router.navigate(['selectCar', startDate, endDate, this.reservationId]);
-      }
-    } else {
-      if (startDate != null && endDate != null) {
-        this.router.navigate(['selectCar', startDate, endDate]);
-      }
+  getFreeCars(startDate: string, endDate: string) {
+    if (startDate != null && endDate != null) {
+      this.carsService.getFreeCars(startDate, endDate).subscribe(cars => {
+        this.cars = cars;
+        this.insertedDate=true;
+        this.startDate=startDate;
+        this.endDate=endDate;
+      });
     }
+  }
+
+  post(car: string){
+    let carId = parseInt(car);
+    if (this.reservationId != null) {
+      this.reservationDTO.id = this.reservationId;
+    } else {
+      this.reservationDTO.id = null;
+    }
+    this.reservationDTO.startDate = this.startDate;
+    this.reservationDTO.endDate = this.endDate;
+    this.reservationDTO.confirmed = null;
+    this.reservationDTO.userId = this.userId;
+    this.reservationDTO.carId = carId;
+    this.reservationsService.updateReservation(this.reservationDTO).subscribe(res => {
+      this.router.navigate(['reservations', localStorage.getItem('userId')])
+    });
   }
 
   back() {

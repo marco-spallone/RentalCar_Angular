@@ -22,7 +22,7 @@ export const approveReservation: MyButtonConfig = {
   text: 'Approva',
   cssClass: 'mt-3 btn btn-outline-success',
   show(entity: any): boolean {
-    if (entity.confirmed != null && entity.confirmed === 'Sì') {
+    if (entity.confirmed != null) {
       return false;
     } else {
       return true;
@@ -34,7 +34,7 @@ export const declineReservation: MyButtonConfig = {
   text: 'Declina',
   cssClass: 'mt-3 btn btn-outline-danger',
   show(entity: any): boolean {
-    if (entity.confirmed != null && entity.confirmed === 'Sì') {
+    if (entity.confirmed != null) {
       return false;
     } else {
       return true;

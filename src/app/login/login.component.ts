@@ -1,16 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
 
   constructor(private usersService: UsersService, private router: Router) {
+  }
+
+  ngOnInit() {
+    console.log(localStorage.getItem('token'));
   }
 
   login(username: string, password: string) {
@@ -24,6 +29,10 @@ export class LoginComponent {
         this.router.navigate(['reservations', response.id]);
       }
     });
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    return false;
   }
 
 }

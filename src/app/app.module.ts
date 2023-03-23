@@ -18,7 +18,6 @@ import {ReservationFormComponent} from './reservationform/reservation-form.compo
 import {LoginComponent} from './login/login.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AuthInterceptor} from "./interceptor/authInterceptor";
-import {SelectCarComponent} from './selectCar/select-car.component';
 
 
 @NgModule({
@@ -35,8 +34,7 @@ import {SelectCarComponent} from './selectCar/select-car.component';
     SortPipe,
     ReservationsComponent,
     ReservationFormComponent,
-    LoginComponent,
-    SelectCarComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
