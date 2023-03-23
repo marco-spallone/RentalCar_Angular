@@ -37,7 +37,7 @@ export class ReservationFormComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.action = params['action'];
       this.reservationId = Number.parseInt(params['resId']);
-      this.userId = parseInt(params['userId']);
+      this.userId = parseInt(localStorage.getItem('userId')!);
       if (this.action === MyTableActionsEnum.EDIT) {
         this.reservationsService.getReservationById(this.reservationId).subscribe(res => {
           this.reservationDTO = this.mapper.fromResToDTO(res);
