@@ -45,4 +45,11 @@ export class UsersService {
     }
     return this.http.post<LoginResponse>(this.loginUrl, loginRequest);
   }
+  canActivate(token:string): boolean{
+    if(token===null){
+      alert('Accesso non autorizzato!');
+      this.router.navigate(['login']);
+      return false;
+    } else return true;
+  }
 }

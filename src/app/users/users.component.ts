@@ -10,9 +10,6 @@ import {User} from "../interfaces/user";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-@Injectable({
-  providedIn: 'root'
-})
 export class UsersComponent implements OnInit {
   tableConfig!: MyTableConfig;
   users!: User[];
@@ -45,13 +42,5 @@ export class UsersComponent implements OnInit {
       default:
         break;
     }
-  }
-
-  canActivate(token:string): boolean{
-    if(token===null){
-      alert('Accesso non autorizzato!');
-      this.router.navigate(['login']);
-      return false;
-    } else return true;
   }
 }
