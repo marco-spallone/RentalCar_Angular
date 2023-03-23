@@ -12,10 +12,10 @@ import {MyTableActionsEnum} from "../table/table.component";
 export class UserFormComponent implements OnInit {
   userId!: number;
   user!: User;
-  username!:string;
+  username!: string;
   valid: boolean = true;
   action!: MyTableActionsEnum;
-  showPasswordInput!:boolean;
+  showPasswordInput!: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UsersService) {
   }
@@ -25,14 +25,14 @@ export class UserFormComponent implements OnInit {
       this.action = params['action'];
       this.userId = parseInt(params['userId']);
     })
-    if(this.action===MyTableActionsEnum.NEW_ROW){
-      this.showPasswordInput=true;
+    if (this.action === MyTableActionsEnum.NEW_ROW) {
+      this.showPasswordInput = true;
     }
     if (this.action === MyTableActionsEnum.EDIT) {
-      this.showPasswordInput=false;
+      this.showPasswordInput = false;
       this.userService.getUserById(this.userId).subscribe(user => {
         this.user = user;
-        this.username=user.username;
+        this.username = user.username;
       });
     } else {
       this.user = {
@@ -51,14 +51,14 @@ export class UserFormComponent implements OnInit {
       && Array.from(editUser.surname)[0] != ' ' && !editUser.username.includes(' ')) {
       this.userService.updateUser(editUser).subscribe(() => {
         this.valid = true;
-        if(editUser.id===parseInt(localStorage.getItem('userId')!) && editUser.username!=this.username) {
+        if (editUser.id === parseInt(localStorage.getItem('userId')!) && editUser.username != this.username) {
           alert('Dopo la modifica dell\'username è necessario effettuare di nuovo il login.');
           localStorage.removeItem('token');
           localStorage.removeItem('userId');
           localStorage.removeItem('admin');
           this.router.navigate(['login']);
         } else {
-          if(localStorage.getItem('admin')==='true'){
+          if (localStorage.getItem('admin') === 'true') {
             this.router.navigate(['users'])
           } else {
             this.router.navigate(['reservation', localStorage.getItem('userId')])

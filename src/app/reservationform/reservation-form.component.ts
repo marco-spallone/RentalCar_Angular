@@ -9,7 +9,6 @@ import {UsersService} from "../services/users.service";
 import {Car} from "../interfaces/car";
 import {ReservationDTO} from "../dto/reservationDTO";
 import {ReservationDTOMapper} from "../mapper/reservationDTOMapper";
-import {end} from "@popperjs/core";
 
 @Component({
   selector: 'app-reservation-form',
@@ -23,15 +22,15 @@ export class ReservationFormComponent implements OnInit {
   userId!: number;
   editable: boolean = true;
   reservations!: Reservation[];
-  insertedDate:boolean=false;
-  cars!:Car[];
+  insertedDate: boolean = false;
+  cars!: Car[];
   reservationDTO!: ReservationDTO;
-  startDate!:string;
-  endDate!:string;
+  startDate!: string;
+  endDate!: string;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private usersService: UsersService,
-              private reservationsService: ReservationsService, private carsService: CarsService, private mapper:ReservationDTOMapper) {
+              private reservationsService: ReservationsService, private carsService: CarsService, private mapper: ReservationDTOMapper) {
   }
 
   ngOnInit(): void {
@@ -69,14 +68,14 @@ export class ReservationFormComponent implements OnInit {
     if (startDate != null && endDate != null) {
       this.carsService.getFreeCars(startDate, endDate).subscribe(cars => {
         this.cars = cars;
-        this.insertedDate=true;
-        this.startDate=startDate;
-        this.endDate=endDate;
+        this.insertedDate = true;
+        this.startDate = startDate;
+        this.endDate = endDate;
       });
     }
   }
 
-  post(car: string){
+  post(car: string) {
     let carId = parseInt(car);
     if (this.reservationId != null) {
       this.reservationDTO.id = this.reservationId;

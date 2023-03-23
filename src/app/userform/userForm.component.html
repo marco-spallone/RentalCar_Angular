@@ -36,8 +36,8 @@
       </div>
       <div *ngIf="showPasswordInput">
         <label for="password">Password:</label><input #password=ngModel name="password" id="password" type="text"
-                                                                                class="form-control" required minlength="6"
-                                                                                [(ngModel)]="user.password"/>
+                                                      class="form-control" required minlength="6"
+                                                      [(ngModel)]="user.password"/>
         <div *ngIf="password.invalid && (password.dirty || password.touched)"
              class="alert">
           <div *ngIf="password.errors?.['required']" style="color:red">
