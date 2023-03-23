@@ -1,24 +1,8 @@
-import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  CanActivate,
-  Router
-} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot} from "@angular/router";
+import {inject} from "@angular/core";
+import {UsersComponent} from "./users/users.component";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RouteGuard implements CanActivate {
-  constructor(private router:Router) {
-  }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
-    if (localStorage.getItem('token')==null) {
-      alert('Non è stato effettuato il login!');
-      this.router.navigate(["login"]);
-      return false;
-    }
-    return true;
-  }
-}
+export const canActivateTeam: CanActivateFn =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    return inject(UsersComponent).canActivate(localStorage.getItem('token')!);
+  };

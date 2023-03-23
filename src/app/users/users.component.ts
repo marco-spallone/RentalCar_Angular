@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {usersTableConfig} from "../config/table-config";
 import {MyTableActionsEnum, MyTableConfig} from "../table/table.component";
 import {UsersService} from "../services/users.service";
@@ -9,6 +9,9 @@ import {User} from "../interfaces/user";
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class UsersComponent implements OnInit {
   tableConfig!: MyTableConfig;
@@ -42,5 +45,13 @@ export class UsersComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  canActivate(token:string): boolean{
+    if(token===null){
+      alert('Accesso non autorizzato!');
+      this.router.navigate(['login']);
+      return false;
+    } else return true;
   }
 }
